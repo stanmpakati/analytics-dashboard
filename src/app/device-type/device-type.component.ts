@@ -1,24 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { ChartComponent } from "ng-apexcharts";
+import { PieChartOptions } from "../core/models/chart-options";
 
-import {
-  ApexNonAxisChartSeries,
-  ApexResponsive,
-  ApexChart,
-  ApexFill,
-  ApexDataLabels,
-  ApexLegend
-} from "ng-apexcharts";
 
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
-  fill: ApexFill;
-  legend: ApexLegend;
-  dataLabels: ApexDataLabels;
-};
 
 @Component({
   selector: 'app-device-type',
@@ -27,7 +11,7 @@ export type ChartOptions = {
 })
 export class DeviceTypeComponent {
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions: Partial<PieChartOptions>;
 
   constructor() {
     this.chartOptions = {

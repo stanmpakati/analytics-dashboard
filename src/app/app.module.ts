@@ -9,6 +9,7 @@ import { DeviceTypeComponent } from './device-type/device-type.component';
 import { ReferrersComponent } from './referrers/referrers.component';
 import { PageViewsComponent } from './page-views/page-views.component';
 import { OsComponent } from './os/os.component';
+import { BarGraphComponent } from './shared/components/bar-graph/bar-graph.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OsComponent } from './os/os.component';
     DeviceTypeComponent,
     ReferrersComponent,
     PageViewsComponent,
-    OsComponent
+    OsComponent,
+    BarGraphComponent
   ],
   imports: [
     BrowserModule,

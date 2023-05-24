@@ -1,4 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
+import { PieChartOptions } from "@ui-core-model/chart-options";
 import {
   ApexChart,
   ChartComponent,
@@ -7,7 +8,6 @@ import {
   ApexPlotOptions,
   ApexNonAxisChartSeries
 } from "ng-apexcharts";
-import { ChartOptions } from "../device-type/device-type.component";
 
 @Component({
   selector: 'app-os',
@@ -16,7 +16,7 @@ import { ChartOptions } from "../device-type/device-type.component";
 })
 export class OsComponent {
   @ViewChild("chart") chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions: Partial<PieChartOptions>;
 
   constructor() {
     this.chartOptions = {
