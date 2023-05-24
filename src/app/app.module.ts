@@ -10,6 +10,7 @@ import { ReferrersComponent } from './referrers/referrers.component';
 import { PageViewsComponent } from './page-views/page-views.component';
 import { OsComponent } from './os/os.component';
 import { BarGraphComponent } from './shared/components/bar-graph/bar-graph.component';
+import { PieChartComponent } from './shared/components/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BarGraphComponent } from './shared/components/bar-graph/bar-graph.compo
     ReferrersComponent,
     PageViewsComponent,
     OsComponent,
-    BarGraphComponent
+    BarGraphComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,
