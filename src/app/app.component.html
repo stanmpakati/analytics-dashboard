@@ -1,0 +1,11 @@
+<router-outlet></router-outlet>
+
+<div id="chart">
+  <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
+    [stroke]="chartOptions.stroke!" [tooltip]="chartOptions.tooltip!"
+    [dataLabels]="chartOptions.dataLabels!"></apx-chart>
+</div>
+
+<app-device-type></app-device-type>
+
+<app-referrers></app-referrers>
