@@ -12,4 +12,11 @@ export class PageViewsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getUniqueVisitors() {
+    return [44, 55, 41, 37, 22, 43, 21];
+  }
+  
+  getPageViews() {
+    return [53, 32, 33, 52, 13, 43, 32];
+  }
 }

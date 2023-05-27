@@ -11,6 +11,7 @@ import { PageViewsComponent } from './page-views/page-views.component';
 import { OsComponent } from './os/os.component';
 import { BarGraphComponent } from './shared/components/bar-graph/bar-graph.component';
 import { PieChartComponent } from './shared/components/pie-chart/pie-chart.component';
+import { StackedBarComponent } from './shared/components/stacked-bar/stacked-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PieChartComponent } from './shared/components/pie-chart/pie-chart.compo
     PageViewsComponent,
     OsComponent,
     BarGraphComponent,
-    PieChartComponent
+    PieChartComponent,
+    StackedBarComponent
   ],
   imports: [
     BrowserModule,
