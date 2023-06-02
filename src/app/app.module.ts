@@ -12,6 +12,7 @@ import { OsComponent } from './os/os.component';
 import { BarGraphComponent } from './shared/components/bar-graph/bar-graph.component';
 import { PieChartComponent } from './shared/components/pie-chart/pie-chart.component';
 import { StackedBarComponent } from './shared/components/stacked-bar/stacked-bar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { StackedBarComponent } from './shared/components/stacked-bar/stacked-bar
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgApexchartsModule,
