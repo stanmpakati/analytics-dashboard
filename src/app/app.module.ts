@@ -14,19 +14,15 @@ import { PieChartComponent } from './shared/components/pie-chart/pie-chart.compo
 import { StackedBarComponent } from './shared/components/stacked-bar/stacked-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './core/auth.guard';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DeviceTypeComponent,
-    ReferrersComponent,
-    PageViewsComponent,
-    OsComponent,
-    BarGraphComponent,
-    PieChartComponent,
-    StackedBarComponent
+    
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -46,7 +42,6 @@ import { AuthGuard } from './core/auth.guard';
   ],
   providers: [
     AuthGuard,
-
   ],
   bootstrap: [AppComponent]
 })

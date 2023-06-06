@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivateChild {
     state: RouterStateSnapshot
   ) {
     // const isAuth = this.authService.getToken;
-    const isAuth = false;
+    const isAuth = true;
 
     if (!isAuth || isAuth === null) {
       this.alertService.showError("Unauthorized", "Sorry we don't have your login details");

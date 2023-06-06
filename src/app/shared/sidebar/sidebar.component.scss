@@ -1,0 +1,46 @@
+.sidebar-wrapper {
+  padding-bottom: 40px;
+  overflow-x: hidden;
+}
+.logo-img {
+  margin-left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img img {
+  width: 85%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.sidebar .nav {
+  margin-top: 0;
+}
+
+.nav {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.foot-buttons {
+  margin-top: auto;
+}
+
+.align-bottom {
+  position: absolute;
+  left: 25px;
+  bottom: 30px;
+}
+
+#logout-button {
+  min-width: 100px;
+}

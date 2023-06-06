@@ -1,0 +1,19 @@
+// :host {
+//   min-height: 100%;
+// }
+
+app-navbar {
+  margin-bottom: 12px;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 0 4px 2px 8px !important;
+}
+
+.main-content {
+  // background: url("../../../assets/images/backgrounds/footprints.png");
+  // background: url("/src/assets/images/backgrounds/angular.png");
+}
+
+
+

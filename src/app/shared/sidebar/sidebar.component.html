@@ -1,0 +1,24 @@
+<div class="logo">
+  <a routerLink="/portal/dashboard" class="">
+    <div class="logo-img">
+      <img src="/assets/images/logo/shumba-money-logo.png" />
+    </div>
+  </a>
+</div>
+<div class="sidebar-wrapper mt-4">
+  <!-- Navigation -->
+  <ul class="nav">
+
+    <!-- <mat-accordion routerLinkActive="active" *ngFor="let menuItem of menuItems" class="nav-item">
+      <app-nav-item-dropdown [menuItem]="menuItem" [showComponent]="viewAllComponents"></app-nav-item-dropdown>
+    </mat-accordion> -->
+
+    <li class="nav-item d-block foot-buttons">
+
+      <button mat-stroked-button color="warn" id="logout-button" (click)="logout()" *ngIf="isMobileMenu"
+        class="d-lg-none">
+        Logout <i class="material-icons" color="warn">logout</i>
+      </button>
+    </li>
+  </ul>
+</div>
