@@ -4,7 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@ui-core-model/*": ["src/app/core/models/*"]
+      "@ui-core-model/*": ["src/app/core/models/*"],
+      "@ui-core-services/*": ["src/app/core/services/*"]
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

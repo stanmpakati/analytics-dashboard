@@ -1,0 +1,16 @@
+// @use '@angular/material'as mat;
+@import '~@angular/material/theming';
+@import "./palettes/sm-primary.scss";
+// @import "./palettes/sm-accent.scss";
+@import "./palettes/sm-pink.scss";
+
+$custom-typography: mat-typography-config($font-family: '"Inter", "Helvetica Neue", sans-serif;');
+@include mat-core($custom-typography);
+
+$sm-palette-primary: mat-palette($sm-primary);
+// $sm-palette-accent: mat-palette($sm-accent);
+$sm-palette-accent: mat-palette($sm-pink);
+
+$sm-app-theme: mat-light-theme($sm-palette-primary, $sm-palette-accent);
+
+@include angular-material-theme($sm-app-theme);

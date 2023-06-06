@@ -1,4 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
+import { NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from "@angular/router";
 
 import {
   ChartComponent,
@@ -28,7 +29,15 @@ export class AppComponent {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
+    this.router.events.subscribe((event) => {
+            if (event instanceof NavigationStart) {
+                console.log('NavigationStart', event.url);
+            }
+          })
+          
     this.chartOptions = {
       series: [
         {

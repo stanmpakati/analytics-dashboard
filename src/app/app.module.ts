@@ -13,6 +13,7 @@ import { BarGraphComponent } from './shared/components/bar-graph/bar-graph.compo
 import { PieChartComponent } from './shared/components/pie-chart/pie-chart.component';
 import { StackedBarComponent } from './shared/components/stacked-bar/stacked-bar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './core/auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,22 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     NgApexchartsModule,
-    AppRoutingModule
+    AppRoutingModule,
+
+    // Used by the interceptors
+    // ToastrModule.forRoot({
+    //   "closeButton": true,
+    //   "newestOnTop": true,
+    //   "progressBar": true,
+    //   "positionClass": "toast-top-right",
+    //   "timeOut": 12000,
+    //   "extendedTimeOut": 10000
+    // }),
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

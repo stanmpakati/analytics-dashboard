@@ -11,6 +11,7 @@ import { ChartSeries } from "@ui-core-model/response";
 })
 export class DeviceTypeComponent implements OnInit {
   data: ChartSeries
+  name = "Device Type"
 
   constructor(
     public analyticsService: AnalyticsService

@@ -1,2 +1,4 @@
-<h2>Device Type</h2>
-<app-pie-chart [name]="'Device Type'" [categories]="data.labels" [data]="data.data">
+<div class="wrapper">
+  <h3>{{name}}</h3>
+  <app-pie-chart [name]="name" [categories]="data.labels" [data]="data.data"></app-pie-chart>
+</div>
