@@ -1,5 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
-import {ChartComponent} from "ng-apexcharts";
+import { Component } from "@angular/core";
 
 
 @Component({

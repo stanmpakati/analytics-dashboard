@@ -1,4 +1,4 @@
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
   <h4>{{name}}</h4>
-  <app-pie-chart [name]="name" [categories]="data.labels" [data]="data.data"></app-pie-chart>
-</div>
+  <app-pie-chart *ngIf="data" [name]="name" [categories]="data.labels" [data]="data.data"></app-pie-chart>
+  <!-- </div> -->

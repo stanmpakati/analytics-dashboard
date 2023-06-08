@@ -8,7 +8,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PageViewsComponent implements OnInit {
   @Input() startDate!: Date
   @Input() endDate!: Date
-  categories = ['2008', '2009', '2010', '2011', '2012', '2013', '2014']
+  categories = [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep"
+        ]
 
   constructor() { }
 
@@ -23,10 +33,10 @@ export class PageViewsComponent implements OnInit {
 
 
   getUniqueVisitors() {
-    return [44, 55, 41, 37, 22, 43, 21];
+    return [44, 55, 41, 37, 22, 43, 21, 45, 60];
   }
   
   getPageViews() {
-    return [53, 32, 33, 52, 13, 43, 32];
+    return [53, 32, 33, 52, 13, 43, 32, 23, 39];
   }
 }

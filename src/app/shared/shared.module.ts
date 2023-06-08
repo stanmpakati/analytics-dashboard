@@ -17,6 +17,7 @@ import { BarGraphComponent } from './components/bar-graph/bar-graph.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { StackedBarComponent } from './components/stacked-bar/stacked-bar.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { LineChartComponent } from './components/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     FooterComponent,
     SidebarComponent,
     
+    LineChartComponent,    
     BarGraphComponent,
     PieChartComponent,
     StackedBarComponent,
@@ -46,7 +48,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     FooterComponent,
     SidebarComponent,
 
-    
+    LineChartComponent,    
     BarGraphComponent,
     PieChartComponent,
     StackedBarComponent

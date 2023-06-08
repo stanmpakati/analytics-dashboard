@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { BarChartOptions } from '@ui-core-model/chart-options';
-import { ChartComponent } from 'ng-apexcharts';
+import { ApexTitleSubtitle, ChartComponent } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-bar-graph',
@@ -13,8 +13,10 @@ export class BarGraphComponent implements OnInit {
   @Input() categories: string[];
   @Input() data: number[];
   public chartOptions: Partial<BarChartOptions>;
-  
+  title!: ApexTitleSubtitle
+
   ngOnInit(): void {
+    // this.title.text = "dskjf"
     this.chartOptions = {
       series: [
         {

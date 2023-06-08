@@ -3,47 +3,64 @@
     [stroke]="chartOptions.stroke!" [tooltip]="chartOptions.tooltip!"
     [dataLabels]="chartOptions.dataLabels!"></apx-chart>
 </div> -->
-<div class="main-content">
 
-  <!-- Routing toggle -->
-  <div class="filter-buttons">
-    <div class="row">
-      <div class="col">
-        Get Time Series Data For:
-      </div>
+<!-- Routing toggle -->
+<div class="filter-buttons">
+  <div class="row">
+    <!-- <div class="col">
+                  Get Time Series Data For:
+    </div> -->
 
+    <div class="col">
       <mat-button-toggle-group [formControl]="filterByControl" aria-label="Font Style">
         <mat-button-toggle value="day">Day</mat-button-toggle>
         <mat-button-toggle value="week">Week</mat-button-toggle>
         <mat-button-toggle value="month">Month</mat-button-toggle>
         <mat-button-toggle value="year">Year</mat-button-toggle>
       </mat-button-toggle-group>
-    </div>
+      </div>
 
-    <div class="col">
-      <!-- Pick Date for report -->
-      <mat-form-field>
-        <mat-label>Enter a date range</mat-label>*
-        <mat-date-range-input [formGroup]="reportRange" [rangePicker]="picker">
-          <input matStartDate [formControl]="startDateControl" placeholder="Start date">
-          <input matEndDate [formControl]="endDateControl" placeholder="End date">
-        </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
+  <div class="col">
+    <!-- Pick Date for report -->
+    <mat-form-field class="w-100">
+      <mat-label>Enter a date range</mat-label>*
+      <mat-date-range-input [formGroup]="reportRange" [rangePicker]="picker">
+        <input matStartDate [formControl]="startDateControl" placeholder="Start date">
+        <input matEndDate [formControl]="endDateControl" placeholder="End date">
+      </mat-date-range-input>
+      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
 
-        <mat-error *ngIf="startDateControl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="endDateControl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-        </mat-form-field>
-        </div>
-        
-        <div class="row">
-        </div>
-        </div>
-        
-        <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-page-views>
+      <mat-error *ngIf="startDateControl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="endDateControl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+      </mat-form-field>
+      </div>
+      </div>
+      
+      </div>
+<div class="row">
+  <div class="col">
+    <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-page-views>
+  </div>
+  <div class="col">
+    <app-device-type [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-device-type>
+  </div>
 
-  <app-device-type [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-device-type>
+  <div class="col">
+    <app-new-visitors></app-new-visitors>
+  </div>
+  </div>
 
-  <app-referrers></app-referrers>
+<div class="row">
+  <div class="col">
+    <app-os></app-os>
+  </div>
+  <div class="col">
+    <app-referrers></app-referrers>
+  </div>
+  
+  <div class="col">
+    <app-browsers></app-browsers>
+  </div>
 </div>

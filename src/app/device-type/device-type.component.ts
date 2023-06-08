@@ -26,8 +26,10 @@ export class DeviceTypeComponent implements OnInit {
       console.log('called at init')
       // console.log('new start date', this.startDate)
       // console.log('new end date', this.endDate)
-    this.analyticsService.getDeviceType(this.startDate, this.endDate)
+    if (this.startDate && this.endDate) {
+      this.analyticsService.getDeviceType(this.startDate, this.endDate)
       .subscribe(data => this.data = data)
+    }
   }
   
 

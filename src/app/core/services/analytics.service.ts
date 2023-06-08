@@ -24,10 +24,10 @@ export class AnalyticsService {
   }
 
   public getDeviceType(startDate: Date, endDate: Date): Observable<ChartSeries> {
-    // return of({
-    //   labels: ["DESKTOP", "MOBILE", "TABLET"],
-    //   data: [8, 5, 1]
-    // })
+    return of({
+      labels: ["DESKTOP", "MOBILE", "TABLET"],
+      data: [8, 5, 1]
+    })
 
     // Returns as List<ReferrerResponse> then convert to ChartSeries
     return this.http.get<ReferrerResponse[]>(

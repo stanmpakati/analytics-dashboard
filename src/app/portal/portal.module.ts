@@ -15,6 +15,8 @@ import { ReferrersComponent } from '../referrers/referrers.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormCoreModule } from '../shared/mat-form-core.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { BrowsersComponent } from './browsers/browsers.component';
+import { NewVisitorsComponent } from './new-visitors/new-visitors.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReferrersComponent,
     PageViewsComponent,
     OsComponent,
+    BrowsersComponent,
+    NewVisitorsComponent,
   ],
   imports: [
     CommonModule,
