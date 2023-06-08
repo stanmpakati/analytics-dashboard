@@ -1,8 +1,6 @@
 import { AnalyticsService } from './../core/services/analytics.service';
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ChartSeries } from "@ui-core-model/response";
-
-
 
 @Component({
   selector: 'app-device-type',
@@ -10,6 +8,8 @@ import { ChartSeries } from "@ui-core-model/response";
   styleUrls: ['./device-type.component.scss']
 })
 export class DeviceTypeComponent implements OnInit {
+  @Input() startDate!: Date
+  @Input() endDate!: Date
   data: ChartSeries
   name = "Device Type"
 
@@ -18,7 +18,15 @@ export class DeviceTypeComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
-    this.analyticsService.getDeviceType(new Date(), new Date())
+    // this.analyticsService.getDeviceType(this.startDate, this.endDate)
+    //   .subscribe(data => this.data = data)
+    }
+    
+    ngOnChanges() {
+      console.log('called at init')
+      // console.log('new start date', this.startDate)
+      // console.log('new end date', this.endDate)
+    this.analyticsService.getDeviceType(this.startDate, this.endDate)
       .subscribe(data => this.data = data)
   }
   

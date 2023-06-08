@@ -1,7 +1,8 @@
+import { ReferrerResponse } from './../models/response';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { ChartSeries } from '@ui-core-model/response';
 
 const analyticsUrl = `${environment.ANALYTICS_SERVICE_URL}`;
@@ -23,10 +24,21 @@ export class AnalyticsService {
   }
 
   public getDeviceType(startDate: Date, endDate: Date): Observable<ChartSeries> {
-    return of({
-      labels: ["DESKTOP", "MOBILE", "TABLET"],
-      data: [8, 5, 1]
-    })
+    // return of({
+    //   labels: ["DESKTOP", "MOBILE", "TABLET"],
+    //   data: [8, 5, 1]
+    // })
+
+    // Returns as List<ReferrerResponse> then convert to ChartSeries
+    return this.http.get<ReferrerResponse[]>(
+      `${analyticsUrl}/analytics/device-type?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
+      .pipe(map(data => {
+        return {
+          labels: data.map(d => d.name),
+          data: data.map(d => d.count)
+        }
+      }))
   }
 
 }
+

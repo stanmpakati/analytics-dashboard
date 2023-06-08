@@ -3,9 +3,47 @@
     [stroke]="chartOptions.stroke!" [tooltip]="chartOptions.tooltip!"
     [dataLabels]="chartOptions.dataLabels!"></apx-chart>
 </div> -->
+<div class="main-content">
 
-<app-page-views></app-page-views>
+  <!-- Routing toggle -->
+  <div class="filter-buttons">
+    <div class="row">
+      <div class="col">
+        Get Time Series Data For:
+      </div>
 
-<app-device-type></app-device-type>
+      <mat-button-toggle-group [formControl]="filterByControl" aria-label="Font Style">
+        <mat-button-toggle value="day">Day</mat-button-toggle>
+        <mat-button-toggle value="week">Week</mat-button-toggle>
+        <mat-button-toggle value="month">Month</mat-button-toggle>
+        <mat-button-toggle value="year">Year</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
 
-<app-referrers></app-referrers>
+    <div class="col">
+      <!-- Pick Date for report -->
+      <mat-form-field>
+        <mat-label>Enter a date range</mat-label>*
+        <mat-date-range-input [formGroup]="reportRange" [rangePicker]="picker">
+          <input matStartDate [formControl]="startDateControl" placeholder="Start date">
+          <input matEndDate [formControl]="endDateControl" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+
+        <mat-error *ngIf="startDateControl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="endDateControl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+        </div>
+        
+        <div class="row">
+        </div>
+        </div>
+        
+        <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-page-views>
+
+  <app-device-type [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-device-type>
+
+  <app-referrers></app-referrers>
+</div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { StackedBarComponent } from './shared/components/stacked-bar/stacked-bar
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './core/auth.guard';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,13 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgApexchartsModule,
     AppRoutingModule,
-
+    MatIconModule,
     // Used by the interceptors
     // ToastrModule.forRoot({
     //   "closeButton": true,

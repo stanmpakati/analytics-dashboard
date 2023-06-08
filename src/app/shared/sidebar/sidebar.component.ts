@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit {
   }
 
   isMobileMenu() {
+    console.log('hit mobile')
     if ($(window).width() > 991) {
       return false;
     }

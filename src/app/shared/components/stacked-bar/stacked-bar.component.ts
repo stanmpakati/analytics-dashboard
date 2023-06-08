@@ -40,6 +40,8 @@ export class StackedBarComponent implements OnInit {
   @Input() bottomTitle: string
   @Input() topData: number[]
   @Input() topTitle: string
+  @Input() name: string
+  @Input() categories: string[]
 
   ngOnInit(): void {
     this.chartOptions = {
@@ -68,15 +70,15 @@ export class StackedBarComponent implements OnInit {
         colors: ["#fff"]
       },
       title: {
-        text: "Fiction Books Sales"
+        text: this.name
       },
       xaxis: {
-        categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014],
-        labels: {
-          formatter: function(val) {
-            return val + "K";
-          }
-        }
+        categories: this.categories,
+        // labels: {
+        //   formatter: function(val) {
+        //     return val + "K";
+        //   }
+        // }
       },
       yaxis: {
         title: {

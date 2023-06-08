@@ -1,17 +1,31 @@
 <div class="wrapper">
-  <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <!-- <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
     <app-sidebar></app-sidebar>
     <div class="sidebar-background"></div>
-  </div>
+  </div> -->
   <!-- <div [ngClass]="isDashboard() ? 'mx-4 px-4' : 'main-panel'"> -->
-  <div class="main-panel">
-    <app-navbar></app-navbar>
-    <div class="main-content">
-      <!-- <app-loading-spinner></app-loading-spinner> -->
-      <router-outlet></router-outlet>
-    </div>
-    <div>
-      <!-- <app-footer></app-footer> -->
-    </div>
   </div>
-</div>
+  <!--Main Navigation-->
+  <header>
+    <app-sidebar></app-sidebar>
+  
+    <app-navbar></app-navbar>
+  </header>
+  <!--Main Navigation-->
+  
+  <!--Main layout-->
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+    <div class="main-panel">
+      <app-navbar></app-navbar>
+      <div class="main-content">
+        <!-- <app-loading-spinner></app-loading-spinner> -->
+        <router-outlet></router-outlet>
+      </div>
+      <div>
+        <!-- <app-footer></app-footer> -->
+      </div>
+    </div>
+    </div>
+</main>
+<!--Main layout-->

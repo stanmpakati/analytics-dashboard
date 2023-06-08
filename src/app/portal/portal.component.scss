@@ -1,6 +1,6 @@
-// :host {
-//   min-height: 100%;
-// }
+:host {
+  min-height: 100%;
+}
 
 app-navbar {
   margin-bottom: 12px;
@@ -15,5 +15,13 @@ app-navbar {
   // background: url("/src/assets/images/backgrounds/angular.png");
 }
 
+.sidebar {
+  
+}
 
+@media (min-width: 991.98px) {
+  main {
+    padding-left: 240px;
+  }
+}
 

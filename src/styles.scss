@@ -1,4 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+@import "src/assets/scss/theme/sm-theme.scss";
+@import "src/assets/scss/core/variables/colors";
+@import "src/assets/scss/core/variables/brand";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Helvetica Neue", sans-serif;
+}
+
+.sidebar {
+  .logo:after {
+    bottom: -24px !important;
+  }
+
+  .logo {
+    margin-bottom: 5px !important;
+  }
+  
+  .nav {
+    margin-top: 0;
+  }
+
+  height: 100%;
+  width: 120px;
+}
+
 .wrapper {
   border: 1px solid #787878;
+  // display: inline-flex;
+}
+
+.main-panel .main-content {
+  padding: 8px 1.5rem 20px 1.5rem !important;
+  // margin-top: 42px;
+}
+
+.color-primary {
+  color: $brand-primary;
+}
+
+
+
+@media only screen and (min-width: 576px) {
+  .main-panel .main-content {
+    padding: 8px 2.5rem 20px 2.5rem !important;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .main-panel .main-content {
+    padding: 8px 3.5rem 20px 3.5rem !important;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .main-panel .main-content {
+    padding: 8px 5.5rem 20px 5.5rem !important;
+  }
 }
