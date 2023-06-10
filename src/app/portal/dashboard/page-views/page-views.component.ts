@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PageViewsComponent implements OnInit {
   @Input() startDate!: Date
   @Input() endDate!: Date
+  @Input() timePeriod!: string
   categories = [
           "Jan",
           "Feb",

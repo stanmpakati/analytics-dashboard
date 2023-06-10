@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ChartSeries } from '@ui-core-model/response';
+import { AnalyticsService } from '@ui-core-services/analytics.service';
 
 @Component({
   selector: 'app-browsers',
@@ -6,24 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./browsers.component.scss']
 })
 export class BrowsersComponent implements OnInit {
-  c = [
-          "Google Chrome",
-          "Microsoft Edge",
-          "Safari",
-          "Mozilla Firefox",
-          "Opera"
-        ]
-
-  getData =[300, 200, 69, 50, 5];
+  @Input() startDate!: Date
+  @Input() endDate!: Date
+  @Input() timePeriod!: string
   
+  data: ChartSeries
+  name = "Device Type"
 
-  getCategories() {
-    return this.c;
-  }
-  
-  constructor() { }
+  constructor(
+    public analyticsService: AnalyticsService
+  ) {  }
 
   ngOnInit(): void {
   }
-
+    
+  ngOnChanges() {
+    if (this.startDate && this.endDate) {
+      this.analyticsService.getBrowsers(this.startDate, this.endDate, this.timePeriod)
+      .subscribe(data => this.data = data)
+    }
+  }
 }

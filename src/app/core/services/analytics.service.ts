@@ -15,7 +15,7 @@ export class AnalyticsService {
 
   constructor(private http: HttpClient) { }
   
-  public getReferrers(startDate: Date, endDate: Date): Observable<ChartSeries> {
+  public getReferrers(startDate: Date, endDate: Date, dateRange: string): Observable<ChartSeries> {
     // return this.http.get<ChartSeries>(`${analyticsUrl}/referrers?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
     // return of([{"name":"DESKTOP","count":1}])
     return of({
@@ -24,18 +24,50 @@ export class AnalyticsService {
     })
   }
 
-  public getOS(startDate: Date, endDate: Date, dateRange: RangeGroupType): Observable<ChartSeries> {
-    return this.http.get<ReferrerResponse[]>(
-      `${analyticsUrl}/analytics/os?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
-      .pipe(map(data => {
-        return {
-          labels: data.map(d => d.name),
-          data: data.map(d => d.count)
-        }
-      }))
+  public getOS(startDate: Date, endDate: Date, dateRange: string): Observable<ChartSeries> {
+
+    return of({labels: [
+          "Windows",
+          "Android",
+          "iOS",
+          "MacOS",
+          "Linux"
+        ], data: [43, 32, 28, 7, 5]})
+
+      return this.http.get<ReferrerResponse[]>(
+        `${analyticsUrl}/analytics/os?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
+        .pipe(map(data => {
+          return {
+            labels: data.map(d => d.name),
+            data: data.map(d => d.count)
+          }
+        }))
   }
 
-  public getNewVisitors(startDate: Date, endDate: Date, dateRange: RangeGroupType): Observable<ChartSeries> {
+  public getBrowsers(startDate: Date, endDate: Date, dateRange: string): Observable<ChartSeries> {
+
+    return of({
+      labels: [
+        "Google Chrome",
+        "Microsoft Edge",
+        "Safari",
+        "Mozilla Firefox",
+        "Opera"
+      ],      
+      data: [300, 200, 69, 50, 5]
+    })
+
+      return this.http.get<ReferrerResponse[]>(
+        `${analyticsUrl}/analytics/os?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
+        .pipe(map(data => {
+          return {
+            labels: data.map(d => d.name),
+            data: data.map(d => d.count)
+          }
+        }))
+  }
+
+  public getNewVisitors(startDate: Date, endDate: Date, dateRange: string): Observable<ChartSeries> {
     return this.http.get<ReferrerResponse[]>(
       `${analyticsUrl}/analytics/visits-new?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
       .pipe(map(data => {

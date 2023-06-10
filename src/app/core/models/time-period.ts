@@ -1,6 +1,6 @@
 export enum RangeGroupType {
-  HOURLY,
-  DAILY,
-  WEEKLY,
-  MONTHLY
+  HOURLY = "HOURLY",
+  DAILY = "DAILY",
+  WEEKLY = "WEEKLY",
+  MONTHLY = "MONTHLY"
 }

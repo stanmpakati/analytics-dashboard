@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
+import { ChartSeries } from "@ui-core-model/response";
+import { AnalyticsService } from "@ui-core-services/analytics.service";
 
 
 @Component({
@@ -7,22 +9,24 @@ import { Component } from "@angular/core";
   styleUrls: ['./referrers.component.scss']
 })
 export class ReferrersComponent {
-  c = [
-          "Google",
-          "none",
-          "Facebook",
-          "Twitter"
-        ]
-
-  getData =[300, 120, 90, 50];
+  @Input() startDate!: Date
+  @Input() endDate!: Date
+  @Input() timePeriod!: string
   
+  data: ChartSeries
+  name = "Device Type"
 
-  getCategories() {
-    return [
-          "Google",
-          "none",
-          "Facebook",
-          "Twitter"
-        ];
+  constructor(
+    public analyticsService: AnalyticsService
+  ) {  }
+
+  ngOnInit(): void {
+  }
+    
+  ngOnChanges() {
+    if (this.startDate && this.endDate) {
+      this.analyticsService.getReferrers(this.startDate, this.endDate, this.timePeriod)
+      .subscribe(data => this.data = data)
+    }
   }
 }

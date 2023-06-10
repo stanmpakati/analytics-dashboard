@@ -1,3 +1,4 @@
+import { RangeGroupType } from './../../core/models/time-period';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
@@ -14,40 +15,46 @@ export class DashboardComponent implements OnInit {
   reportRange!: FormGroup
   startDateControl!: FormControl
   endDateControl!: FormControl
+
+  rangeGroups: string [] = Object.keys(RangeGroupType)
   today = new Date();
 
   constructor() { }
 
   ngOnInit(): void {
     this.filterByControl = new FormControl('week')
-    this.timePeriodControl = new FormControl('daily')
+    this.timePeriodControl = new FormControl('DAILY')
     
     this.startDateControl = new FormControl()
     this.endDateControl = new FormControl(this.today);
 
-    if(this.filterByControl.value === 'day') {
-      this.timePeriodControl.setValue('hourly')
-      // set start date to the day before
-      this.endDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 1))
-    } else if(this.filterByControl.value === 'week') {
-      this.timePeriodControl.setValue('daily')
-      // set start date to the week before
-      this.startDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 7))      
-    } else if (this.filterByControl.value === 'month') {
-      this.timePeriodControl.setValue('weekly')
-      this.startDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth() - 1, this.today.getDate()))
-    } else if (this.filterByControl.value === 'year') {
-      this.timePeriodControl.setValue('monthly')
-      this.startDateControl.setValue(new Date(this.today.getFullYear() - 1, this.today.getMonth(), this.today.getDate()))
-    }  
+    this.setFormValuesFromToggle(this.filterByControl.value)
 
     this.reportRange = new FormGroup({
       start: this.startDateControl,
       end: this.endDateControl
     });
+
+    
+    this.filterByControl.valueChanges.subscribe((value) => {
+       this.setFormValuesFromToggle(value)
+    })
   }
 
-  // Function to listen to the date picker and change date range
-
+  setFormValuesFromToggle(value: string) {
+    if(value === 'day') {
+      this.timePeriodControl.setValue('HOURLY')
+      this.endDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 1))
+    } else if(value === 'week') {
+      this.timePeriodControl.setValue('DAILY')
+      this.startDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 7))      
+    } else if (value === 'month') {
+      this.timePeriodControl.setValue('DAILY')
+      this.startDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth() - 1, this.today.getDate()))
+    } else { // YEARLY
+      this.timePeriodControl.setValue('MONTHLY')
+      this.startDateControl.setValue(new Date(this.today.getFullYear() - 1, this.today.getMonth(), this.today.getDate()))
+    } 
+  }
 
 }

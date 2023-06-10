@@ -7,10 +7,6 @@
 <!-- Routing toggle -->
 <div class="filter-buttons">
   <div class="row">
-    <!-- <div class="col">
-                  Get Time Series Data For:
-    </div> -->
-
     <div class="col">
       <mat-button-toggle-group [formControl]="filterByControl" aria-label="Font Style">
         <mat-button-toggle value="day">Day</mat-button-toggle>
@@ -18,49 +14,64 @@
         <mat-button-toggle value="month">Month</mat-button-toggle>
         <mat-button-toggle value="year">Year</mat-button-toggle>
       </mat-button-toggle-group>
-      </div>
+    </div>
 
-  <div class="col">
-    <!-- Pick Date for report -->
-    <mat-form-field class="w-100">
-      <mat-label>Enter a date range</mat-label>*
-      <mat-date-range-input [formGroup]="reportRange" [rangePicker]="picker">
-        <input matStartDate [formControl]="startDateControl" placeholder="Start date">
-        <input matEndDate [formControl]="endDateControl" placeholder="End date">
-      </mat-date-range-input>
-      <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
+    <div class="col">
+      <!-- Pick Date for report -->
+      <mat-form-field class="w-100">
+        <mat-label>Enter a date range</mat-label>*
+        <mat-date-range-input [formGroup]="reportRange" [rangePicker]="picker">
+          <input matStartDate [formControl]="startDateControl" placeholder="Start date">
+          <input matEndDate [formControl]="endDateControl" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
 
-      <mat-error *ngIf="startDateControl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-      <mat-error *ngIf="endDateControl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        <mat-error *ngIf="startDateControl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+        <mat-error *ngIf="endDateControl.hasError('matEndDateInvalid')">Invalid end date</mat-error>
       </mat-form-field>
-      </div>
-      </div>
-      
-      </div>
+    </div>
+    </div>
+
+  <!-- select reporting period -->
+  <mat-form-field>
+    <mat-label>Reporting Intervals</mat-label>
+    <mat-select [formControl]="timePeriodControl">
+      <mat-option *ngFor="let rangeGroup of rangeGroups" [value]="rangeGroup">
+        {{rangeGroup}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div class="row">
   <div class="col">
-    <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-page-views>
+    <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-page-views>
   </div>
   <div class="col">
-    <app-device-type [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-device-type>
+    <app-device-type [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-device-type>
   </div>
 
   <div class="col">
-    <app-new-visitors></app-new-visitors>
+    <app-new-visitors [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-new-visitors>
   </div>
   </div>
 
 <div class="row">
   <div class="col">
-    <app-os></app-os>
+    <app-os [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-os>
   </div>
   <div class="col">
-    <app-referrers></app-referrers>
+      <app-referrers [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+        [timePeriod]="timePeriodControl.value"></app-referrers>
   </div>
   
   <div class="col">
-    <app-browsers></app-browsers>
-  </div>
+      <app-browsers [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+        [timePeriod]="timePeriodControl.value"></app-browsers>
+      </div>
 </div>

@@ -20,6 +20,7 @@ import { NewVisitorsComponent } from './dashboard/new-visitors/new-visitors.comp
 import { CreateUserComponent } from './users/create-user/create-user.component';
 import { AllAdminUsersComponent } from './users/all-admin-users/all-admin-users.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
 
     MatDialogModule,
-    MatOptionModule,
+    MatSelectModule,
     MatFormCoreModule,
     MatButtonToggleModule,
     MatDatepickerModule,

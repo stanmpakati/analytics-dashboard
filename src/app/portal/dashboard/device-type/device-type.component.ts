@@ -10,6 +10,8 @@ import { ChartSeries } from "@ui-core-model/response";
 export class DeviceTypeComponent implements OnInit {
   @Input() startDate!: Date
   @Input() endDate!: Date
+  @Input() timePeriod!: string
+  
   data: ChartSeries
   name = "Device Type"
 
@@ -18,14 +20,9 @@ export class DeviceTypeComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
-    // this.analyticsService.getDeviceType(this.startDate, this.endDate)
-    //   .subscribe(data => this.data = data)
-    }
+  }
     
-    ngOnChanges() {
-      console.log('called at init')
-      // console.log('new start date', this.startDate)
-      // console.log('new end date', this.endDate)
+  ngOnChanges() {
     if (this.startDate && this.endDate) {
       this.analyticsService.getDeviceType(this.startDate, this.endDate)
       .subscribe(data => this.data = data)

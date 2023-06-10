@@ -1,4 +1,6 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
+import { ChartSeries } from "@ui-core-model/response";
+import { AnalyticsService } from "@ui-core-services/analytics.service";
 
 
 @Component({
@@ -7,19 +9,25 @@ import { Component, ViewChild } from "@angular/core";
   styleUrls: ['./os.component.scss']
 })
 export class OsComponent {
-  c = [
-          "Windows",
-          "Android",
-          "iOS",
-          "MacOS",
-          "Linux"
-        ]
-
-  getData =[43, 32, 28, 7, 5];
+  @Input() startDate!: Date
+  @Input() endDate!: Date
+  @Input() timePeriod!: string
   
+  data: ChartSeries
+  name = "Device Type"
 
-  getCategories() {
-    return this.c;
+  constructor(
+    public analyticsService: AnalyticsService
+  ) {  }
+
+  ngOnInit(): void {
+  }
+    
+  ngOnChanges() {
+    if (this.startDate && this.endDate) {
+      this.analyticsService.getOS(this.startDate, this.endDate, this.timePeriod)
+      .subscribe(data => this.data = data)
+    }
   }
   
 }
