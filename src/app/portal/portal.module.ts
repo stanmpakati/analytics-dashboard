@@ -8,15 +8,18 @@ import { SharedModule } from '../shared/shared.module';
 import { PortalRoutingModule } from './portal-routing.module';
 import { PortalComponent } from './portal.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
-import { DeviceTypeComponent } from '../device-type/device-type.component';
-import { OsComponent } from '../os/os.component';
-import { PageViewsComponent } from '../page-views/page-views.component';
+import { DeviceTypeComponent } from './dashboard/device-type/device-type.component';
+import { OsComponent } from './dashboard/os/os.component';
+import { PageViewsComponent } from './dashboard/page-views/page-views.component';
 import { ReferrersComponent } from '../referrers/referrers.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormCoreModule } from '../shared/mat-form-core.module';
-import { MatNativeDateModule } from '@angular/material/core';
-import { BrowsersComponent } from './browsers/browsers.component';
-import { NewVisitorsComponent } from './new-visitors/new-visitors.component';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { BrowsersComponent } from './dashboard/browsers/browsers.component';
+import { NewVisitorsComponent } from './dashboard/new-visitors/new-visitors.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
+import { AllAdminUsersComponent } from './users/all-admin-users/all-admin-users.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -29,6 +32,8 @@ import { NewVisitorsComponent } from './new-visitors/new-visitors.component';
     OsComponent,
     BrowsersComponent,
     NewVisitorsComponent,
+    CreateUserComponent,
+    AllAdminUsersComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +42,8 @@ import { NewVisitorsComponent } from './new-visitors/new-visitors.component';
     NgApexchartsModule,
     ReactiveFormsModule,
 
+    MatDialogModule,
+    MatOptionModule,
     MatFormCoreModule,
     MatButtonToggleModule,
     MatDatepickerModule,

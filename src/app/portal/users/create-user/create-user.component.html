@@ -1,0 +1,69 @@
+<h3 mat-dialog-title>Create {{ componentFrom }} User</h3>
+
+<mat-dialog-content>
+  <form [formGroup]="userForm">
+    <div class="row">
+
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required>
+          <mat-error *ngIf="firstNameControl.errors?.['required']">
+            First Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field>
+          <mat-label>Middle Name</mat-label>
+          <input matInput formControlName="middleNames">
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required>
+          <mat-error *ngIf="lastNameControl.errors?.['required']">
+            Last Name is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required>
+          <mat-error *ngIf="emailControl.errors?.['required']">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Select Input for role -->
+      <div class="col-md-6 col-12 mb-3">
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" required>
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{role }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="roleControl.errors?.['required']">
+            Role is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="isLoading || !userForm.valid">
+    Create {{ componentFrom }} User
+  </button>
+</mat-dialog-actions>

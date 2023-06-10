@@ -1,0 +1,79 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AlertService } from '@ui-core-services/alert.service';
+import { AuthService } from '@ui-core-services/auth.service';
+import { UserRoles } from '@ui-core-model/user';
+
+@Component({
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.scss']
+})
+export class CreateUserComponent implements OnInit {
+  userForm!: FormGroup
+  firstNameControl!: FormControl
+  middleNamesControl!: FormControl
+  lastNameControl!: FormControl
+  emailControl!: FormControl
+  roleControl!: FormControl
+  isLoading = false
+  roles = Object.keys(UserRoles)
+  componentFrom = ''
+
+  constructor(
+    public dialogRef: MatDialogRef<CreateUserComponent>,
+    private authService: AuthService,
+    private alertService: AlertService,
+    private route: ActivatedRoute,
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: { role: UserRoles },
+  ) { }
+
+  ngOnInit(): void {
+    this.firstNameControl = new FormControl(null, { validators: [Validators.required] })
+    this.middleNamesControl = new FormControl(null)
+    this.lastNameControl = new FormControl(null, { validators: [Validators.required] })
+    this.emailControl = new FormControl(null, { validators: [Validators.required] })
+    this.roleControl = new FormControl(this.data?.role, { validators: [Validators.required] })
+
+    this.userForm = new FormGroup({
+      firstName: this.firstNameControl,
+      middleNames: this.middleNamesControl,
+      lastName: this.lastNameControl,
+      email: this.emailControl,
+      role: this.roleControl,
+    })
+
+    this.route.queryParams.subscribe(params => {
+      if (params['create'] === 'internal') {
+        this.componentFrom = 'Internal'
+        this.roles = this.roles;
+      } else if (params['create'] === 'external') {
+        this.componentFrom = 'Agent'
+        this.roles = this.roles
+      }
+    })
+  }
+
+  onSubmit() {
+    if (this.userForm.invalid) return this.userForm.markAllAsTouched();
+
+    this.isLoading = true
+
+    const userDto = { ...this.userForm.value, roles: [this.userForm.value.role] }
+
+    this.authService.createBackOfficeUser(userDto).subscribe({
+      next: (res: any) => {
+        this.isLoading = false
+        if (res) {
+          this.alertService.showSuccess('User created successfully')
+          this.dialogRef.close({ isSuccessful: true, data: res })
+        }
+      },
+      error: (err: any) => this.isLoading = false
+    })
+  }
+
+}

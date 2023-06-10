@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, map, of } from 'rxjs';
 import { ChartSeries } from '@ui-core-model/response';
+import { RangeGroupType } from '@ui-core-model/time-period';
 
 const analyticsUrl = `${environment.ANALYTICS_SERVICE_URL}`;
 
@@ -13,7 +14,7 @@ const analyticsUrl = `${environment.ANALYTICS_SERVICE_URL}`;
 export class AnalyticsService {
 
   constructor(private http: HttpClient) { }
-
+  
   public getReferrers(startDate: Date, endDate: Date): Observable<ChartSeries> {
     // return this.http.get<ChartSeries>(`${analyticsUrl}/referrers?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`);
     // return of([{"name":"DESKTOP","count":1}])
@@ -21,6 +22,28 @@ export class AnalyticsService {
       labels: ["google.com", "", "facebook.com", "bing.com"],
       data: [18, 15, 7, 3]
     })
+  }
+
+  public getOS(startDate: Date, endDate: Date, dateRange: RangeGroupType): Observable<ChartSeries> {
+    return this.http.get<ReferrerResponse[]>(
+      `${analyticsUrl}/analytics/os?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
+      .pipe(map(data => {
+        return {
+          labels: data.map(d => d.name),
+          data: data.map(d => d.count)
+        }
+      }))
+  }
+
+  public getNewVisitors(startDate: Date, endDate: Date, dateRange: RangeGroupType): Observable<ChartSeries> {
+    return this.http.get<ReferrerResponse[]>(
+      `${analyticsUrl}/analytics/visits-new?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
+      .pipe(map(data => {
+        return {
+          labels: data.map(d => d.name),
+          data: data.map(d => d.count)
+        }
+      }))
   }
 
   public getDeviceType(startDate: Date, endDate: Date): Observable<ChartSeries> {

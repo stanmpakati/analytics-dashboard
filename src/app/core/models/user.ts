@@ -21,3 +21,21 @@ export interface AuthResponse {
   access_token: string,
   expires_in: number,
 }
+
+
+export enum UserRoles {
+  ROLE_ADMIN = 'ROLE_ADMIN',
+  ROLE_FINANCE = 'ROLE_FINANCE',
+  ROLE_MARKETING = 'ROLE_MARKETING',
+}
+
+export interface User {
+  userId: string;
+  email: string;
+  firstName: string;
+  middleNames: string;
+  lastName: string;
+  createdAt: Date;
+  createdBy: string;
+  updatedAt: Date;
+}

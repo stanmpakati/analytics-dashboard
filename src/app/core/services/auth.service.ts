@@ -2,7 +2,7 @@ import { AlertService } from '@ui-core-services/alert.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, Observable, map, catchError, throwError, tap } from 'rxjs';
+import { Subject, Observable, map, catchError, throwError, tap, of } from 'rxjs';
 // import { Auth, AuthDetails, DecodedTokenDto, UserNameModel } from '../models/auth';
 import {isPlatformBrowser} from '@angular/common';
 // import { MatDialog } from '@angular/material/dialog';
@@ -15,6 +15,11 @@ const authUrl = `${environment.ANALYTICS_SERVICE_URL}`;
   providedIn: 'root'
 })
 export class AuthService {
+  //   this.authStatusListener.next(false);
+  //   this.alertService.showError(errorMessage, "Unauthorized")
+  //   throw new Error(errorMessage)
+  // }
+  // Save to local storage
   private token!: string;
   private tokenTimer!: any;
   private authStatusListener = new Subject<boolean>();
@@ -71,6 +76,16 @@ export class AuthService {
     return localStorage.getItem('last_name');
   }
 
+  createBackOfficeUser(userDto: any): Observable<AuthDetails> {
+    // throw new Error('Method not implemented.');
+    return of();
+  }
+  
+  
+  getBackOfficeUsers(arg0: { page: number; perPage: number; }):Observable< { users: User[]; links: { totalObjects: number; }; }> {
+    // throw new Error('Method not implemented.');
+    return of();
+  }
 
   public loginUser(authDetails: AuthDetails, returnUrl: string): Observable<boolean> {
 

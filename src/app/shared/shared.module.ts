@@ -18,12 +18,15 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { StackedBarComponent } from './components/stacked-bar/stacked-bar.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
+
+    TableComponent,
     
     LineChartComponent,    
     BarGraphComponent,
@@ -33,6 +36,7 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
   imports: [
     CommonModule,
     RouterModule,
+    MatSortModule,
     MatButtonModule,
     MatIconModule,
     MatExpansionModule,
@@ -47,6 +51,8 @@ import { LineChartComponent } from './components/line-chart/line-chart.component
     NavbarComponent,
     FooterComponent,
     SidebarComponent,
+
+    TableComponent,
 
     LineChartComponent,    
     BarGraphComponent,

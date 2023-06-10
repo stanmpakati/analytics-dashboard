@@ -1,4 +1,4 @@
-import { AnalyticsService } from './../core/services/analytics.service';
+import { AnalyticsService } from '../../../core/services/analytics.service';
 import { Component, Input, OnInit } from "@angular/core";
 import { ChartSeries } from "@ui-core-model/response";
 

@@ -1,0 +1,23 @@
+a {
+  cursor: pointer;
+}
+
+tr:nth-child(even) {
+  background: #dfe7e7
+}
+
+td.mat-cell {
+  height: 64px;
+  border: 0;
+  font-weight: 400;
+  color: black;
+}
+
+::ng-deep .mat-sort-header-arrow {
+  color: #fff;
+}
+
+tr {
+  border: 0 !important;
+  font-weight: 400;
+}
