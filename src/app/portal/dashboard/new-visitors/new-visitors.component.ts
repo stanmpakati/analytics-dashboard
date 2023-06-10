@@ -24,7 +24,7 @@ export class NewVisitorsComponent implements OnInit {
     
   ngOnChanges() {
     if (this.startDate && this.endDate) {
-      this.analyticsService.getDeviceType(this.startDate, this.endDate)
+      this.analyticsService.getNewVisitors(this.startDate, this.endDate, this.timePeriod)
       .subscribe(data => this.data = data)
     }
   }

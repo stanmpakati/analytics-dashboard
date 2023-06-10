@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -28,6 +28,10 @@ export class LineChartComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<LineChartOptions>;
 
+  @Input() name: string
+  @Input() categories: string[]
+  @Input() data: number[]
+
   constructor() { }
 
   ngOnInit(): void {
@@ -35,7 +39,7 @@ export class LineChartComponent implements OnInit {
       series: [
         {
           name: "New Visitors",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+          data: this.data
         }
       ],
       chart: {
@@ -52,7 +56,7 @@ export class LineChartComponent implements OnInit {
         curve: "straight"
       },
       title: {
-        text: "New Visits per Month",
+        text: this.name,
         align: "left"
       },
       grid: {
@@ -62,17 +66,7 @@ export class LineChartComponent implements OnInit {
         }
       },
       xaxis: {
-        categories: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep"
-        ]
+        categories: this.categories
       }
     };
   }

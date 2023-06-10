@@ -5,9 +5,10 @@
 </div> -->
 
 <!-- Routing toggle -->
+<div class="top d-inline-flex w-100">
 <div class="filter-buttons">
-  <div class="row">
-    <div class="col">
+  <div class="d-flex">
+    <div class="cl">
       <mat-button-toggle-group [formControl]="filterByControl" aria-label="Font Style">
         <mat-button-toggle value="day">Day</mat-button-toggle>
         <mat-button-toggle value="week">Week</mat-button-toggle>
@@ -16,16 +17,16 @@
       </mat-button-toggle-group>
     </div>
 
-    <div class="col">
+    <div class="cl mx-4">
       <!-- Pick Date for report -->
-      <mat-form-field class="w-100">
-        <mat-label>Enter a date range</mat-label>*
+      <mat-form-field class="">
+        <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [formGroup]="reportRange" [rangePicker]="picker">
           <input matStartDate [formControl]="startDateControl" placeholder="Start date">
           <input matEndDate [formControl]="endDateControl" placeholder="End date">
         </mat-date-range-input>
         <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
 
         <mat-error *ngIf="startDateControl.hasError('matStartDateInvalid')">Invalid start date</mat-error>
@@ -33,6 +34,7 @@
       </mat-form-field>
     </div>
     </div>
+    
 
   <!-- select reporting period -->
   <mat-form-field>
@@ -44,6 +46,9 @@
     </mat-select>
   </mat-form-field>
 </div>
+<app-metrics-banner [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-metrics-banner>
+</div>
+
 <div class="row">
   <div class="col">
     <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"
@@ -53,14 +58,13 @@
     <app-device-type [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-device-type>
   </div>
+</div>
 
+<div class="grid">
   <div class="col">
     <app-new-visitors [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-new-visitors>
   </div>
-  </div>
-
-<div class="row">
   <div class="col">
     <app-os [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-os>

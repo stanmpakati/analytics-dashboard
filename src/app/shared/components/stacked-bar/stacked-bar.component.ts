@@ -34,8 +34,8 @@ export type StackedBarChartOptions = {
   styleUrls: ['./stacked-bar.component.scss']
 })
 export class StackedBarComponent implements OnInit {
-  @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<StackedBarChartOptions>;
+  @ViewChild("chart") chart: ChartComponent;
   @Input() bottomData: number[]
   @Input() bottomTitle: string
   @Input() topData: number[]

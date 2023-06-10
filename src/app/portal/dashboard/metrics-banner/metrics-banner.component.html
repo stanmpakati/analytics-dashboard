@@ -1,0 +1,21 @@
+<div class="w-100 d-inline-flex">
+  <div class="mx-4">
+    <span class="metric-large">{{ presentData?.visits }}</span>
+    <span class="metric-title">Visitors</span>
+    <!-- <span class="metric-from">5% increase</span> -->
+  </div>
+  <div class="mx-4">
+    <span class="metric-large">
+      {{ millisToMinutesAndSeconds(presentData?.averageVisitDuration) }}
+    </span>
+    <span class="metric-title">Average visit time</span>
+    <!-- <span class="d-block other">5% increase</span> -->
+  </div>
+  <div class="mx-4">
+    <span class="metric-large">
+      {{ presentData?.uniqueVisitors }}
+    </span>
+    <span class="metric-title">Unique Visitor</span>
+    <!-- <span class="d-block other">5% increase</span> -->
+  </div>
+</div>

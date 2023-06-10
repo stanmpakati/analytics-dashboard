@@ -4,3 +4,9 @@
   border: 1px solid rgb(204, 204, 204);
   border-radius: 16px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  grid-gap: 1rem;
+}

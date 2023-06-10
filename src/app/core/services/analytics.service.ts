@@ -1,4 +1,4 @@
-import { ReferrerResponse } from './../models/response';
+import { MetricsOverviewResponse, ReferrerResponse } from './../models/response';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -56,8 +56,8 @@ export class AnalyticsService {
       ],      
       data: [300, 200, 69, 50, 5]
     })
-
-      return this.http.get<ReferrerResponse[]>(
+    
+    return this.http.get<ReferrerResponse[]>(
         `${analyticsUrl}/analytics/os?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
         .pipe(map(data => {
           return {
@@ -68,6 +68,21 @@ export class AnalyticsService {
   }
 
   public getNewVisitors(startDate: Date, endDate: Date, dateRange: string): Observable<ChartSeries> {
+    
+    return of({
+      labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep"
+        ],      
+      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+    })
     return this.http.get<ReferrerResponse[]>(
       `${analyticsUrl}/analytics/visits-new?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&dateRange=${dateRange}`)
       .pipe(map(data => {
@@ -93,6 +108,16 @@ export class AnalyticsService {
           data: data.map(d => d.count)
         }
       }))
+  }
+
+  public getMetricsOverview(startDate: Date, endDate: Date): Observable<MetricsOverviewResponse[]> {
+    // return of([{
+    //       visits: 11,
+    //       devices: 11,
+    //       averageVisitDuration: 11000.0
+    //     }])
+    return this.http.get<MetricsOverviewResponse[]>(
+      `${analyticsUrl}/analytics/?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
   }
 
 }
