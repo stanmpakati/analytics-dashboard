@@ -53,15 +53,16 @@ export class AuthService {
     return localStorage.getItem('user_role');
   }
 
-
   createBackOfficeUser(userDto: any): Observable<string> {
-    // throw new Error('Method not implemented.');
-    return this.http.post<string>(`${authUrl}/create`, userDto);
+    return this.http.post<string>(`${authUrl}/create`, userDto)
+      .pipe(map(res => {
+        console.log('got response', res);
+        return res;
+      }));
   }
   
   
   getBackOfficeUsers():Observable<User[]> {
-    // throw new Error('Method not implemented.');
     return this.http.get<User[]>(`${authUrl}`);
   }
 

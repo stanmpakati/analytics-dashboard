@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlertService } from '@ui-core-services/alert.service';
@@ -19,7 +19,7 @@ export class CreateUserComponent implements OnInit {
   emailControl!: FormControl
   roleControl!: FormControl
   hidePassword = true;
-  isLoading = false
+  isLoading: boolean
   roles = Object.keys(UserRoles)
   componentFrom = ''
 
@@ -28,11 +28,13 @@ export class CreateUserComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: { role: UserRoles },
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = false
     this.firstNameControl = new FormControl(null, { validators: [Validators.required] })
     this.middleNamesControl = new FormControl(null)
     this.lastNameControl = new FormControl(null, { validators: [Validators.required] })
@@ -62,6 +64,7 @@ export class CreateUserComponent implements OnInit {
     if (this.userForm.invalid) return this.userForm.markAllAsTouched();
 
     this.isLoading = true
+    this.cdr.detectChanges()
 
     const userDto = { ...this.userForm.value, role: this.userForm.value.role }
 
@@ -75,7 +78,12 @@ export class CreateUserComponent implements OnInit {
           this.dialogRef.close({ isSuccessful: true, data: res })
         }
       },
-      error: (err: any) => this.isLoading = false
+      error: (err: any) => this.isLoading = false,
+      complete: () => {
+        console.log('complete')
+        this.isLoading = false
+        this.dialogRef.close({ isSuccessful: true, data: 'Success' })
+      }
     })
   }
 

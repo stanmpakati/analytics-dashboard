@@ -37,7 +37,6 @@ export class AllAdminUsersComponent implements OnInit {
   ngOnInit(): void {
     this.roleControl = new FormControl(this.activeRole)
 
-    this.isLoading = true
     this.loadData()
 
     this.roleControl.valueChanges.subscribe(res => {
@@ -61,26 +60,22 @@ export class AllAdminUsersComponent implements OnInit {
   public loadData() {
     this.isLoading = true;
     
-    this.authService.getBackOfficeUsers().subscribe({
-      next: (res: User[]) => {
+    this.authService.getBackOfficeUsers().subscribe((res: User[]) => {
         this.dataSource = new MatTableDataSource(res)
         this.length = res.length
 
         this.isLoading = false
         this.hasData = true
       },
-      error: (err: any) => this.isLoading = false,
-    })  }
+      (err: any) => this.isLoading = false,
+    )}
 
   openDialog() {
 
     const dialogRef = this.dialog.open(CreateUserComponent, { maxWidth: "800px", width: "80vw" });
 
     dialogRef.afterClosed().subscribe((result: DialogResponse<User>) => {
-      if (result?.isSuccessful) {
-        this.router.navigate(['/portal/admin/users/search'], { queryParams: { email: result.data.email } })
-        this.loadData()
-      }
+      this.loadData()
     });
   }
 

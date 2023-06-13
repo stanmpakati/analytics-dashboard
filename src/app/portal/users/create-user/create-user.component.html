@@ -24,7 +24,7 @@
       <div class="col-md-6 col-12 mb-3">
         <mat-form-field>
           <mat-label>Username</mat-label>
-          <input matInput formControlName="username" required>
+          <input matInput formControlName="username" required (keydown.space)="$event.preventDefault()">
           <mat-error *ngIf="lastNameControl.errors?.['required']">
             Username is required
           </mat-error>
@@ -67,6 +67,6 @@
 <mat-dialog-actions align="end">
   <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
   <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="isLoading || !userForm.valid">
-    {{ !isLoading? 'Create User' : 'LOADING...'}}
+    {{ !isLoading? 'Create User' : 'LOADING...' }}
   </button>
 </mat-dialog-actions>
