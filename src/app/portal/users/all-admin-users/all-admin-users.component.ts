@@ -15,15 +15,17 @@ import { AuthService } from '@ui-core-services/auth.service';
   styleUrls: ['./all-admin-users.component.scss']
 })
 export class AllAdminUsersComponent implements OnInit {
-  displayedColumns = ["firstName", "lastName", "email", "roles", "createdAt"];
+  displayedColumns = ["username", "role", "createdAt"]
   length: number;
   hasData: boolean = false;
   isLoading = false;
   dataSource: MatTableDataSource<User>;
-  actions: TableAction[] = [{ value: "View", idFieldVal: "userId", type: ActionType.BUTTON }];
+  // actions: TableAction[] = [];
+  actions: TableAction[] = [{ value: "Delete", idFieldVal: "username", type: ActionType.BUTTON }];
   roles: string[] = ['ALL ADMIN'].concat(Object.keys(UserRoles));
   activeRole: String = 'ALL ADMIN';
   roleControl: FormControl;
+  isAdmin!: boolean;
 
   constructor(
     private authService: AuthService,
@@ -35,12 +37,19 @@ export class AllAdminUsersComponent implements OnInit {
   ngOnInit(): void {
     this.roleControl = new FormControl(this.activeRole)
 
+    this.isLoading = true
     this.loadData()
 
     this.roleControl.valueChanges.subscribe(res => {
       this.activeRole = res
       this.loadData()
     })
+
+    this.isAdmin = this.authService.getRole === UserRoles.ADMIN
+
+    if(!this.isAdmin) {
+      this.actions = []
+    } 
 
     this.route.queryParams.subscribe(params => {
       if (params['create']) {
@@ -50,21 +59,18 @@ export class AllAdminUsersComponent implements OnInit {
   }
 
   public loadData() {
-    this.onPageChange({ pageIndex: 1, pageSize: 10 })
-  }
-
-  public onPageChange(obj: { pageIndex: number, pageSize: number }) {
     this.isLoading = true;
-    if (this.activeRole === 'ALL ADMIN') {
-      this.loadAllData(obj)
-    } else {
-      this.loadRoleData(obj)
-    }
+    
+    this.authService.getBackOfficeUsers().subscribe({
+      next: (res: User[]) => {
+        this.dataSource = new MatTableDataSource(res)
+        this.length = res.length
 
-  }
-  loadRoleData(obj: { pageIndex: number; pageSize: number; }) {
-    throw new Error('Method not implemented.');
-  }
+        this.isLoading = false
+        this.hasData = true
+      },
+      error: (err: any) => this.isLoading = false,
+    })  }
 
   openDialog() {
 
@@ -89,30 +95,21 @@ export class AllAdminUsersComponent implements OnInit {
   //   })
   // }
 
-  private loadAllData(obj: { pageIndex: number, pageSize: number }) {
-    this.authService.getBackOfficeUsers({ page: obj.pageIndex, perPage: obj.pageSize }).subscribe({
-      next: (res: { users: User[]; links: { totalObjects: number; }; }) => {
-        this.dataSource = new MatTableDataSource(res.users)
-        this.length = res.links.totalObjects
-
-        this.isLoading = false
-        this.hasData = true
-      },
-      error: (err: any) => this.isLoading = false,
-    })
-  }
-
   onParentCallback(event: [User, TableAction]) {
     const [user, action] = event;
 
     switch (action.value) {
-      case 'View':
-        this.router.navigate([`/portal/admin/users/search`], { queryParams: { email: user.email } });
+      case 'Delete':
+        this.authService.deleteUser(user.username)
+          .subscribe({
+            next: (res: string) => {
+              this.loadData()
+            }
+          });
+        // this.router.navigate([`/portal/admin/users/search`], { queryParams: { email: user.email } });
         break;
       default:
         console.log('No action found');
     }
   }
-
-
 }

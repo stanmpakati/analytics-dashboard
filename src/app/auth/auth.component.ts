@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = new FormControl('', {
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required],
       updateOn: 'blur',
     });
 
@@ -51,7 +51,7 @@ export class AuthComponent implements OnInit {
     }
 
     const auth: AuthDetails = {
-      email: this.email.value,
+      username: this.email.value,
       password: this.password.value,
     };
 
@@ -72,7 +72,8 @@ export class AuthComponent implements OnInit {
           this.submitted = false;
           this.error = {
             error: true,
-            message: err.message
+            // message: err.message
+            message: "Username or Password is incorrect"
           }
         }
       });

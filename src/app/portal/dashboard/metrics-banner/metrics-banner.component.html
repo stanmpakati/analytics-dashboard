@@ -1,7 +1,7 @@
 <div class="w-100 d-inline-flex">
   <div class="mx-4">
-    <span class="metric-large">{{ presentData?.visits }}</span>
-    <span class="metric-title">Visitors</span>
+    <span class="metric-large">{{ presentData?.visits ?? 0 }}</span>
+    <span class="metric-title">Visits</span>
     <!-- <span class="metric-from">5% increase</span> -->
   </div>
   <div class="mx-4">
@@ -13,9 +13,9 @@
   </div>
   <div class="mx-4">
     <span class="metric-large">
-      {{ presentData?.uniqueVisitors }}
+      {{ presentData?.uniqueVisitors ?? 0 }}
     </span>
-    <span class="metric-title">Unique Visitor</span>
+    <span class="metric-title">Unique Visitors</span>
     <!-- <span class="d-block other">5% increase</span> -->
   </div>
 </div>

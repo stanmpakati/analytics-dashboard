@@ -14,9 +14,15 @@ export class NavbarComponent implements OnInit {
     mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    username: string;
     // user: User;
 
-    constructor(location: Location, private element: ElementRef, private router: Router, private authService: AuthService) {
+    constructor(
+        location: Location,
+        private element: ElementRef, 
+        private router: Router, 
+        private authService: AuthService
+    ) {
         this.location = location;
         this.sidebarVisible = false;
     }
@@ -36,7 +42,7 @@ export class NavbarComponent implements OnInit {
             }
         });
 
-        this.getProfile()
+        this.username = this.authService.getUserName
     }
 
     getProfile() {

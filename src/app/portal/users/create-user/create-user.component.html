@@ -4,7 +4,7 @@
   <form [formGroup]="userForm">
     <div class="row">
 
-      <div class="col-md-6 col-12 mb-3">
+      <!-- <div class="col-md-6 col-12 mb-3">
         <mat-form-field>
           <mat-label>First Name</mat-label>
           <input matInput formControlName="firstName" required>
@@ -19,24 +19,27 @@
           <mat-label>Middle Name</mat-label>
           <input matInput formControlName="middleNames">
         </mat-form-field>
-      </div>
+      </div> -->
 
       <div class="col-md-6 col-12 mb-3">
         <mat-form-field>
-          <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" required>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" required>
           <mat-error *ngIf="lastNameControl.errors?.['required']">
-            Last Name is required
+            Username is required
           </mat-error>
         </mat-form-field>
       </div>
 
       <div class="col-md-6 col-12 mb-3">
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" required>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required>
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">
+            {{ hidePassword ? "visibility_off" : "visibility" }}
+          </mat-icon>
           <mat-error *ngIf="emailControl.errors?.['required']">
-            Email is required
+            Password is required
           </mat-error>
         </mat-form-field>
       </div>
@@ -64,6 +67,6 @@
 <mat-dialog-actions align="end">
   <button mat-button color="warn" (click)="dialogRef.close()">Cancel</button>
   <button mat-flat-button color="primary" (click)="onSubmit()" [disabled]="isLoading || !userForm.valid">
-    Create {{ componentFrom }} User
+    {{ !isLoading? 'Create User' : 'LOADING...'}}
   </button>
 </mat-dialog-actions>

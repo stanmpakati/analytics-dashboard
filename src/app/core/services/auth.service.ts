@@ -7,9 +7,9 @@ import { Subject, Observable, map, catchError, throwError, tap, of } from 'rxjs'
 import {isPlatformBrowser} from '@angular/common';
 // import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { AuthDetails, AuthResponse, User } from '@ui-core-model/user';
+import { AuthDetails, AuthResponse, User, UserRoles } from '@ui-core-model/user';
 
-const authUrl = `${environment.ANALYTICS_SERVICE_URL}`;
+const authUrl = `${environment.AUTH_SERVICE_URL}`;
 
 @Injectable({
   providedIn: 'root'
@@ -40,51 +40,33 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  // get getIsAuthenticated(): boolean {
-  //   return this.authStatusListener
-  // }
-
-  get getToken(): string | null {
-    // if(isPlatformBrowser(this.ssrService.platformId)){
-    //   const access_token = localStorage.getItem('access_token')
-    //   const token_type = localStorage.getItem('token_type')
-
-    //   if (access_token && token_type) return `${token_type} ${access_token}`;
-
-    //   return null;
-    // }
-    return null;
-  }
-
-  get getTokenSubString(): string | null {
-    return localStorage.getItem('access_token');
-  }
 
   get getUserId() {
-    try {
-      return this.decodeToken(this.getTokenSubString!).sub
-    } catch {
-      return '';
-    }
+    return localStorage.getItem('id');
   }
 
-  get getFirstName(): string | null {
-    return localStorage.getItem('first_name');
+  get getUserName(): string | null {
+    return localStorage.getItem('username');
   }
 
-  get getLastName(): string | null {
-    return localStorage.getItem('last_name');
+  get getRole(): string {
+    return localStorage.getItem('user_role');
   }
 
-  createBackOfficeUser(userDto: any): Observable<AuthDetails> {
+
+  createBackOfficeUser(userDto: any): Observable<string> {
     // throw new Error('Method not implemented.');
-    return of();
+    return this.http.post<string>(`${authUrl}/create`, userDto);
   }
   
   
-  getBackOfficeUsers(arg0: { page: number; perPage: number; }):Observable< { users: User[]; links: { totalObjects: number; }; }> {
+  getBackOfficeUsers():Observable<User[]> {
     // throw new Error('Method not implemented.');
-    return of();
+    return this.http.get<User[]>(`${authUrl}`);
+  }
+
+  deleteUser(username: String) {
+    return this.http.delete<string>(`${authUrl}/${username}`);
   }
 
   public loginUser(authDetails: AuthDetails, returnUrl: string): Observable<boolean> {
@@ -100,12 +82,12 @@ export class AuthService {
 
     // Login at db
     return this.http
-      .post<AuthResponse>(`${authUrl}/users/signin`, authDetails)
+      .post<User>(`${authUrl}/login`, authDetails)
       .pipe(
         map((response) => {
-          this.token = response.access_token;
 
-          if (response.access_token) {
+          console.log(response)
+          if (response) {
             this.authStatusListener.next(true);
 
             // const decodedString: DecodedTokenDto = this.decodeToken(response.access_token);
@@ -121,10 +103,7 @@ export class AuthService {
 
             // Save to local storage
             this.saveAuthData(
-              response.access_token,
-              response.token_type,
-              // response.user,
-              2,
+              response
             );
 
             // Continue to where user was headed
@@ -199,20 +178,17 @@ export class AuthService {
     return JSON.parse(window.atob(payload));
   }
 
-  private saveAuthData(access_token: string, token_type: string, expiration: number) {
+  private saveAuthData(response: User) {
     // localStorage.setItem('first_name', user.firstName);
     // localStorage.setItem('last_name', user.lastName);
-    localStorage.setItem('access_token', access_token);
-    localStorage.setItem('token_type', token_type);
-    localStorage.setItem('expiration_date', JSON.stringify(expiration));
+    localStorage.setItem('username', response.username);
+    localStorage.setItem('id', `${response.id}`);
+    localStorage.setItem('user_role', response.role);
   }
 
   private clearAuthData() {
-      localStorage.removeItem('token_type');
-      localStorage.removeItem('expiration_date');
-      localStorage.removeItem('first_name');
-      localStorage.removeItem('last_name');
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('user_roles');
+      localStorage.removeItem('username');
+      localStorage.removeItem('id');
+      localStorage.removeItem('user_role');
   }
 }

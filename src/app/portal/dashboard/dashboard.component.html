@@ -37,18 +37,20 @@
     
 
   <!-- select reporting period -->
-  <mat-form-field>
+  <!-- <mat-form-field>
     <mat-label>Reporting Intervals</mat-label>
     <mat-select [formControl]="timePeriodControl">
       <mat-option *ngFor="let rangeGroup of rangeGroups" [value]="rangeGroup">
         {{rangeGroup}}
       </mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 </div>
-<app-metrics-banner [startDate]="startDateControl.value" [endDate]="endDateControl.value"></app-metrics-banner>
+<app-metrics-banner [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+  (hasData)="toggleShowAnalytics($event)" (isLoading)="toggleIsLoading($event)"></app-metrics-banner>
 </div>
 
+<div *ngIf="!showAnalytics && !isLoading">
 <div class="row">
   <div class="col">
     <app-page-views [startDate]="startDateControl.value" [endDate]="endDateControl.value"
@@ -61,10 +63,10 @@
 </div>
 
 <div class="grid">
-  <div class="col">
+  <!-- <div class="col">
     <app-new-visitors [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-new-visitors>
-  </div>
+  </div> -->
   <div class="col">
     <app-os [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-os>
@@ -78,4 +80,14 @@
       <app-browsers [startDate]="startDateControl.value" [endDate]="endDateControl.value"
         [timePeriod]="timePeriodControl.value"></app-browsers>
       </div>
+</div>
+</div>
+
+<div class="image p-4" *ngIf="showAnalytics">
+  <h5 class="text-center mt-4 mb-2">Sorry no Analytics for this period</h5>
+  <img src="/assets/images/no-data.png" alt="">
+</div>
+
+<div class="loader">
+
 </div>

@@ -11,7 +11,7 @@ export interface User {
 }
 
 export interface AuthDetails {
-  email: string,
+  username: string,
   password: string
 }
 
@@ -24,18 +24,18 @@ export interface AuthResponse {
 
 
 export enum UserRoles {
-  ROLE_ADMIN = 'ROLE_ADMIN',
-  ROLE_FINANCE = 'ROLE_FINANCE',
-  ROLE_MARKETING = 'ROLE_MARKETING',
+  ADMIN = 'ADMIN',
+  FINANCE = 'FINANCE',
+  MARKETING = 'MARKETING',
+  ANALYST = 'ANALYST',
 }
 
 export interface User {
-  userId: string;
-  email: string;
-  firstName: string;
-  middleNames: string;
-  lastName: string;
+  id: number;
+  username: string;
+  password: string;
+  role: UserRoles;
   createdAt: Date;
-  createdBy: string;
+  // createdBy: string;
   updatedAt: Date;
 }

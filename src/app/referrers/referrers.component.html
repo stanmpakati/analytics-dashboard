@@ -1,2 +1,3 @@
 <h4>Referrer</h4>
-<app-bar-graph [name]="'Referrers'" [categories]="data.labels" [data]="data.data"></app-bar-graph>
+<app-bar-graph [name]="'Referrers'" [categories]="data?.labels" [data]="data?.data"
+  *ngIf="data?.labels.length > 0"></app-bar-graph>

@@ -1,7 +1,7 @@
 <h2>Back Office Users</h2>
 
-<div class="row align-items-center mx-1 mb-4">
-  <span class="h4 mr-4">Filter by: </span>
+<div class="row align-items-center mx-1 mb-4" *ngIf="isAdmin">
+  <!-- <span class="h4 mr-4">Filter by: </span> -->
   <!-- <mat-form-field class="mr-auto">
     <mat-label>Role</mat-label>
     <mat-select [formControl]="roleControl" disableOptionCentering>
@@ -14,13 +14,8 @@
   <button mat-flat-button color="primary" (click)="openDialog()">Add User</button>
 </div>
 
-<app-table *ngIf="!isLoading" [displayedColumns]="displayedColumns" [dataSource]="dataSource" [hasPages]="true"
-  (tellParentToReload)="onPageChange($event)" [length]="length" [actions]="actions"
+<app-table *ngIf="!isLoading" [displayedColumns]="displayedColumns" [dataSource]="dataSource" [actions]="actions"
   (onParentCall)="onParentCallback($event)">
 </app-table>
 
 <mat-spinner *ngIf="isLoading" class="table-spinner"></mat-spinner>
-
-<small *ngIf="hasData && activeRole === 'ALL ADMIN'">
-  Sorry Backend is sending this data, if I didn't have a deadline I would have fixed it
-</small>

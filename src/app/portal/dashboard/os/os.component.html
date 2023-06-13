@@ -2,4 +2,5 @@
   [fill]="chartOptions.fill!" [dataLabels]="chartOptions.dataLabels!"
   [responsive]="chartOptions.responsive!"></apx-chart> -->
   <h4>Operating system</h4>
-  <app-bar-graph [name]="'Referrers'" [categories]="data.labels" [data]="data.data"></app-bar-graph>
+  <app-bar-graph [name]="'Operating System'" [categories]="data?.labels" [data]="data?.data"
+    *ngIf="data?.labels.length > 0"></app-bar-graph>

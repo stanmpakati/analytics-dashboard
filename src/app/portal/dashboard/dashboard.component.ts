@@ -19,6 +19,9 @@ export class DashboardComponent implements OnInit {
   rangeGroups: string [] = Object.keys(RangeGroupType)
   today = new Date();
 
+  showAnalytics = false;
+  isLoading = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -44,7 +47,7 @@ export class DashboardComponent implements OnInit {
   setFormValuesFromToggle(value: string) {
     if(value === 'day') {
       this.timePeriodControl.setValue('HOURLY')
-      this.endDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 1))
+      this.startDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 1))
     } else if(value === 'week') {
       this.timePeriodControl.setValue('DAILY')
       this.startDateControl.setValue(new Date(this.today.getFullYear(), this.today.getMonth(), this.today.getDate() - 7))      
@@ -55,6 +58,14 @@ export class DashboardComponent implements OnInit {
       this.timePeriodControl.setValue('MONTHLY')
       this.startDateControl.setValue(new Date(this.today.getFullYear() - 1, this.today.getMonth(), this.today.getDate()))
     } 
+  }
+
+  toggleShowAnalytics(hasData: boolean) {
+    this.showAnalytics = hasData
+  }
+
+  toggleIsLoading(isLoading: boolean) {
+    this.isLoading = isLoading
   }
 
 }

@@ -1,5 +1,5 @@
 import { AnalyticsService } from '../../../core/services/analytics.service';
-import { Component, Input, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
 import { ChartSeries } from "@ui-core-model/response";
 
 @Component({
@@ -16,7 +16,8 @@ export class DeviceTypeComponent implements OnInit {
   name = "Device Type"
 
   constructor(
-    public analyticsService: AnalyticsService
+    public analyticsService: AnalyticsService,
+    private cdr: ChangeDetectorRef,
   ) {  }
 
   ngOnInit(): void {
@@ -27,6 +28,7 @@ export class DeviceTypeComponent implements OnInit {
       this.analyticsService.getDeviceType(this.startDate, this.endDate)
       .subscribe(data => this.data = data)
     }
+    this.cdr.detectChanges();
   }
   
 

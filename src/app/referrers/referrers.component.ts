@@ -25,7 +25,7 @@ export class ReferrersComponent {
     
   ngOnChanges() {
     if (this.startDate && this.endDate) {
-      this.analyticsService.getReferrers(this.startDate, this.endDate, this.timePeriod)
+      this.analyticsService.getReferrers(this.startDate, this.endDate)
       .subscribe(data => this.data = data)
     }
   }

@@ -4,6 +4,7 @@
 
 export const environment = {
   ANALYTICS_SERVICE_URL: "http://localhost:8080/api/v1",
+  AUTH_SERVICE_URL: "http://localhost:8080/user",
   production: false
 };
 

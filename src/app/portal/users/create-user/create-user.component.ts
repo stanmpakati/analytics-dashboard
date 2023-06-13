@@ -18,6 +18,7 @@ export class CreateUserComponent implements OnInit {
   lastNameControl!: FormControl
   emailControl!: FormControl
   roleControl!: FormControl
+  hidePassword = true;
   isLoading = false
   roles = Object.keys(UserRoles)
   componentFrom = ''
@@ -39,10 +40,10 @@ export class CreateUserComponent implements OnInit {
     this.roleControl = new FormControl(this.data?.role, { validators: [Validators.required] })
 
     this.userForm = new FormGroup({
-      firstName: this.firstNameControl,
-      middleNames: this.middleNamesControl,
-      lastName: this.lastNameControl,
-      email: this.emailControl,
+      // firstName: this.firstNameControl,
+      // middleNames: this.middleNamesControl,
+      username: this.lastNameControl,
+      password: this.emailControl,
       role: this.roleControl,
     })
 
@@ -62,11 +63,13 @@ export class CreateUserComponent implements OnInit {
 
     this.isLoading = true
 
-    const userDto = { ...this.userForm.value, roles: [this.userForm.value.role] }
+    const userDto = { ...this.userForm.value, role: this.userForm.value.role }
 
     this.authService.createBackOfficeUser(userDto).subscribe({
       next: (res: any) => {
         this.isLoading = false
+        console.log("tasvika pano with res", res)
+        
         if (res) {
           this.alertService.showSuccess('User created successfully')
           this.dialogRef.close({ isSuccessful: true, data: res })

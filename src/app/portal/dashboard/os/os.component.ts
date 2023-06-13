@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, Input, ViewChild } from "@angular/core";
 import { ChartSeries } from "@ui-core-model/response";
 import { AnalyticsService } from "@ui-core-services/analytics.service";
 
@@ -17,7 +17,8 @@ export class OsComponent {
   name = "Device Type"
 
   constructor(
-    public analyticsService: AnalyticsService
+    public analyticsService: AnalyticsService,
+    private cdr: ChangeDetectorRef,
   ) {  }
 
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class OsComponent {
       this.analyticsService.getOS(this.startDate, this.endDate, this.timePeriod)
       .subscribe(data => this.data = data)
     }
+    this.cdr.detectChanges();
   }
   
 }

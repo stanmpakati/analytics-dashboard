@@ -22,6 +22,7 @@ import { AllAdminUsersComponent } from './users/all-admin-users/all-admin-users.
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MetricsBannerComponent } from './dashboard/metrics-banner/metrics-banner.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { MetricsBannerComponent } from './dashboard/metrics-banner/metrics-banne
     NgApexchartsModule,
     ReactiveFormsModule,
 
+    MatIconModule,
     MatDialogModule,
     MatSelectModule,
     MatFormCoreModule,

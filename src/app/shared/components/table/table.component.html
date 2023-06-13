@@ -5,7 +5,7 @@
     </mat-paginator>
 
     <table mat-table class="mat-elevation-z8 w-100" [dataSource]="dataSource" matSort
-      (matSortChange)="announceSortChange($event)" *ngIf="dataSource.data.length > 0">
+      (matSortChange)="announceSortChange($event)" *ngIf="dataSource?.data?.length > 0">
 
       <ng-container *ngFor="let column of allColumns" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
@@ -39,6 +39,6 @@
     </table>
   </div>
 </div>
-<div *ngIf="dataSource.data.length === 0">
-  <p>oopsy No Data</p>
+<div *ngIf="dataSource?.data?.length === 0">
+  <p>No User Data</p>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ChartSeries } from '@ui-core-model/response';
 import { AnalyticsService } from '@ui-core-services/analytics.service';
 
@@ -16,7 +16,8 @@ export class BrowsersComponent implements OnInit {
   name = "Device Type"
 
   constructor(
-    public analyticsService: AnalyticsService
+    public analyticsService: AnalyticsService,
+    private cdr: ChangeDetectorRef,
   ) {  }
 
   ngOnInit(): void {
@@ -27,5 +28,6 @@ export class BrowsersComponent implements OnInit {
       this.analyticsService.getBrowsers(this.startDate, this.endDate, this.timePeriod)
       .subscribe(data => this.data = data)
     }
+    this.cdr.detectChanges();
   }
 }

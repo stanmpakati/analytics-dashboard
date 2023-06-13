@@ -1,2 +1,6 @@
-<app-stacked-bar [bottomData]="getUniqueVisitors()" [bottomTitle]="'Unique Visits'" [topData]="getPageViews()"
-  [topTitle]="'Page Views'" [name]="'Visitor Page views'" [categories]="categories"></app-stacked-bar>
+<!-- 
+  
+ -->
+<h4>Page Views</h4>
+<app-bar-graph [name]="'Page Views'" [categories]="data?.labels" [data]="data?.data"
+  *ngIf="data?.labels.length > 0"></app-bar-graph>

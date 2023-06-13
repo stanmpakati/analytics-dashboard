@@ -45,7 +45,18 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (this.data && this.data.length > 0)
       this.allColumns = Object.keys(this.data[0]);
 
-    if (this.dataSource?.data) this.allColumns = Object.keys(this.dataSource.data[0]);
+//       this.dataSource.data = [
+//     {
+//         id: 202,
+//         username: "admin",
+//         password: "admin",
+//         role: "ADMIN",
+//         createdAt: 1686458296552,
+//         updated: 1686458296552
+//     }
+// ]
+
+    if (this.dataSource?.data) this.allColumns = Object.keys(this.dataSource?.data[0]);
 
     if (this.actions?.length > 0 && this.displayedColumns.indexOf("actions") === -1)
       this.displayedColumns.push("actions")

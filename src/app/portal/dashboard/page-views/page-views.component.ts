@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AnalyticsService } from '@ui-core-services/analytics.service';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChartSeries } from '@ui-core-model/response';
 
 @Component({
   selector: 'app-page-views',
@@ -9,6 +11,8 @@ export class PageViewsComponent implements OnInit {
   @Input() startDate!: Date
   @Input() endDate!: Date
   @Input() timePeriod!: string
+  data: ChartSeries
+
   categories = [
           "Jan",
           "Feb",
@@ -21,15 +25,21 @@ export class PageViewsComponent implements OnInit {
           "Sep"
         ]
 
-  constructor() { }
+  constructor(
+    private analyticsService: AnalyticsService,
+    private cdr: ChangeDetectorRef,
+) { }
 
   ngOnInit(): void {
-    console.log('starts')
-    console.log(this.startDate)
   }
 
   ngOnChanges() {
     // console.log('new start date', this.startDate)
+    if (this.startDate && this.endDate) {
+      this.analyticsService.getPageViews(this.startDate, this.endDate)
+        .subscribe(data => this.data = data)
+    }
+    this.cdr.detectChanges();
   }
 
 
