@@ -56,6 +56,12 @@ body {
   border: #006063;
 }
 
+.active {
+  box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  background-color: #006063 !important;
+  color: white !important;
+}
+
 .flexExpand {
     flex: 1 1 auto;
 }
@@ -77,4 +83,78 @@ body {
   .main-panel .main-content {
     padding: 8px 5.5rem 20px 5.5rem !important;
   }
+}
+
+@media print {
+  button {
+    display: none;
+  }
+  .no-print {
+    visibility: hidden;
+    display: none !important;
+  }
+
+  .print-only{
+    visibility: visible;
+  }
+
+  .no-print-tiny{
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .do-print{
+    visibility: visible;
+  }
+
+  mat-sidenav {
+    display: none !important;
+  }
+
+  mat-sidenav-container {
+      // Remove background color to save toner
+      background-color: transparent !important;
+      // Override the color from the template
+      color: black !important;
+      // Position needs to be relative
+      position: relative !important;
+
+      mat-sidenav-content {
+        // Remove the content margin if sidenav is expanded when hidden for print
+        margin: 0 !important;
+
+        // Remove max width and padding from containers to flow text depending on printer page sizes
+        .container {
+          min-width: 0 !important;
+          padding: 0 !important;
+        }
+
+        // Roboto not printing ok on Chrome, fallback on supported fonts
+        .mat-typography, .mat-card {
+          font-family: 'Helvetica Neue', sans-serif !important;
+          h1, h2, h3, h4, h5 {
+            font-family: 'Helvetica Neue', sans-serif !important;
+          }
+        }
+        .mat-button, .mat-raised-button, .mat-icon-button,
+        .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+          font-family: 'Helvetica Neue', sans-serif !important;
+        }
+
+        // Define where a page break should occur when printing
+        h2 {
+          page-break-before: always; // always break before h2 elements, for chapters for example
+        }
+        h3, h4 {
+          page-break-after: avoid; // avoid breaking after subtitles, it looks weird
+        }
+        pre, blockquote, img {
+          page-break-inside: avoid; // avoid breaking inside pre and blockquotes
+        }
+      }
+    }
+  
+
+
 }

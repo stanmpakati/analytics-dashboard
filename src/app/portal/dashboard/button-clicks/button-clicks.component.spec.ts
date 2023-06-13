@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavItemDropdownComponent } from './nav-item-dropdown.component';
+import { ButtonClicksComponent } from './button-clicks.component';
 
-describe('NavItemDropdownComponent', () => {
-  let component: NavItemDropdownComponent;
-  let fixture: ComponentFixture<NavItemDropdownComponent>;
+describe('ButtonClicksComponent', () => {
+  let component: ButtonClicksComponent;
+  let fixture: ComponentFixture<ButtonClicksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavItemDropdownComponent ]
+      declarations: [ ButtonClicksComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavItemDropdownComponent);
+    fixture = TestBed.createComponent(ButtonClicksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

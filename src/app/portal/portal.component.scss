@@ -14,8 +14,9 @@ app-navbar {
   height: 120px;
 }
 
-.side-nav {
+mat-sidenav  {
   min-height: 100%;
+  min-width: 180px;
 }
 
 main {

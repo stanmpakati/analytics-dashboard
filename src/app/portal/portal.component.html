@@ -35,7 +35,7 @@
                                                                                                                                                                     </div>
                                                                                                                           </div>
                                                                                                                           </nav> -->
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="no-print">
       <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu" class="d-block d-md-none">
         <mat-icon>menu</mat-icon>
       </button>
@@ -58,12 +58,12 @@
     
     <!-- Sidebar -->
     <mat-sidenav-container class="side-nav">
-      <mat-sidenav #sidenav mode="side" opened="true" class="app-sidenav">
+      <mat-sidenav #sidenav mode="side" opened="true" class="app-sidenav no-print">
         <mat-nav-list>
-          <mat-list-item routerLink="/portal/dashboard">
+          <mat-list-item routerLink="/portal/dashboard" routerLinkActive='active'>
             <mat-icon>dashboard</mat-icon><span>Dashboard</span>
           </mat-list-item>
-          <mat-list-item routerLink="/portal/users">
+          <mat-list-item routerLink="/portal/users" routerLinkActive='active'>
             <mat-icon>person_outline</mat-icon><span>Users</span>
           </mat-list-item>
         </mat-nav-list>

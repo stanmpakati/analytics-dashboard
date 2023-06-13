@@ -48,6 +48,11 @@
 </div>
 <app-metrics-banner [startDate]="startDateControl.value" [endDate]="endDateControl.value"
   (hasData)="toggleShowAnalytics($event)" (isLoading)="toggleIsLoading($event)"></app-metrics-banner>
+  <!-- Print Page button -->
+  <div class="flexExpand"></div>
+  <div class="print-btn">
+    <button mat-raised-button color="primary" class="ml-auto" (click)="printPage()">Print Report</button>
+  </div>
 </div>
 
 <div *ngIf="!showAnalytics && !isLoading">
@@ -71,7 +76,12 @@
     <app-os [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-os>
   </div>
-  <div class="col">
+  <!-- <div class="col">
+              <app-button-clicks [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+                [timePeriod]="timePeriodControl.value"></app-button-clicks>
+              </div> -->
+
+    <div class="col">
       <app-referrers [startDate]="startDateControl.value" [endDate]="endDateControl.value"
         [timePeriod]="timePeriodControl.value"></app-referrers>
   </div>

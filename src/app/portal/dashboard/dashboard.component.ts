@@ -68,4 +68,8 @@ export class DashboardComponent implements OnInit {
     this.isLoading = isLoading
   }
 
+  printPage() {
+    window.print()
+  }
+
 }

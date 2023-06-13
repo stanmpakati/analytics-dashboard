@@ -28,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ButtonClicksComponent } from './dashboard/button-clicks/button-clicks.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CreateUserComponent,
     AllAdminUsersComponent,
     MetricsBannerComponent,
+    ButtonClicksComponent,
   ],
   imports: [
     CommonModule,
