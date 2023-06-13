@@ -73,17 +73,23 @@
       [timePeriod]="timePeriodControl.value"></app-new-visitors>
   </div> -->
   <div class="col">
+    <app-button-clicks [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-button-clicks>
+  </div>
+  
+  <div class="col">
+    <app-link-clicks [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-link-clicks>
+  </div>
+
+  <div class="col">
     <app-os [startDate]="startDateControl.value" [endDate]="endDateControl.value"
       [timePeriod]="timePeriodControl.value"></app-os>
   </div>
-  <!-- <div class="col">
-              <app-button-clicks [startDate]="startDateControl.value" [endDate]="endDateControl.value"
-                [timePeriod]="timePeriodControl.value"></app-button-clicks>
-              </div> -->
 
-    <div class="col">
-      <app-referrers [startDate]="startDateControl.value" [endDate]="endDateControl.value"
-        [timePeriod]="timePeriodControl.value"></app-referrers>
+  <div class="col">
+    <app-referrers [startDate]="startDateControl.value" [endDate]="endDateControl.value"
+      [timePeriod]="timePeriodControl.value"></app-referrers>
   </div>
   
   <div class="col">

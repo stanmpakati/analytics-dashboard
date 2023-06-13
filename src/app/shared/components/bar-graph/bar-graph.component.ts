@@ -22,8 +22,14 @@ export class BarGraphComponent implements OnInit {
   title!: ApexTitleSubtitle
   chartData: GroupedSeries[]
 
+  isDistributed = true
+  // name = 'index => category
+  // login 78 => name
+  // register 12 => data
+
   ngOnInit(): void {
     if(this.groupedSeries?.length > 0) {
+      this.isDistributed = false
       this.chartData = this.groupedSeries
     } else {
       this.chartData = [
@@ -36,6 +42,11 @@ export class BarGraphComponent implements OnInit {
 
     this.chartOptions = {
       series: this.chartData,
+      stroke: {
+        show: true,
+        width: 1,
+        colors: ["#fff"]
+      },
       xaxis: {
         categories: this.categories
       },
@@ -46,8 +57,21 @@ export class BarGraphComponent implements OnInit {
       },
       plotOptions: {
         bar: {
-          horizontal: true
+          distributed: this.isDistributed,
+          horizontal: true,
+          dataLabels: {
+            position: "bottom"
+          }
         }
+      },
+      title: {
+        text: 'this.name',
+        align: "center",
+        floating: false
+      },
+      subtitle: {
+        text: "Category Names as DataLabels inside bars",
+        align: "center"
       },
       dataLabels: {
         enabled: false

@@ -5,6 +5,7 @@
 export const environment = {
   ANALYTICS_SERVICE_URL: "http://localhost:8080/api/v1",
   AUTH_SERVICE_URL: "http://localhost:8080/user",
+  CLIENT_URL: "/C:/Users/Stan/Documents/msu/MSU/Dissertation/Code/elearning-html-template",
   production: false
 };
 

@@ -29,6 +29,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ButtonClicksComponent } from './dashboard/button-clicks/button-clicks.component';
+import { LinkClicksComponent } from './dashboard/link-clicks/link-clicks.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { ButtonClicksComponent } from './dashboard/button-clicks/button-clicks.c
     AllAdminUsersComponent,
     MetricsBannerComponent,
     ButtonClicksComponent,
+    LinkClicksComponent,
   ],
   imports: [
     CommonModule,

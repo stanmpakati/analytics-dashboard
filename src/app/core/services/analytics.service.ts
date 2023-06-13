@@ -1,12 +1,14 @@
-import { ButtonClickResponse, MetricsOverviewResponse, PageViewsResponse, ReferrerResponse } from './../models/response';
+import { ButtonClickResponse, LinkClickResponse, MetricsOverviewResponse, PageViewsResponse, ReferrerResponse } from './../models/response';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, map, of } from 'rxjs';
 import { ChartSeries } from '@ui-core-model/response';
 import { RangeGroupType } from '@ui-core-model/time-period';
+import { GroupedSeries } from 'src/app/shared/components/bar-graph/bar-graph.component';
 
 const analyticsUrl = `${environment.ANALYTICS_SERVICE_URL}`;
+const clientUrl = `${environment.CLIENT_URL}`;
 
 @Injectable({
   providedIn: 'root'
@@ -148,22 +150,72 @@ export class AnalyticsService {
       `${analyticsUrl}/analytics/pageviews?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
       .pipe(map(data => {
         return {
-          labels: data.map(d => d.pageName),
+          labels: data.map(d => d.pageName.replace(clientUrl, '')),
           data: data.map(d => d.visits)
         }
       }))
   }
 
-  // public getButtonClicks(startDate: Date, endDate: Date): Observable<ChartSeries> {
+  public getButtonClicks(startDate: Date, endDate: Date) {  
 
-  //   return this.http.get<ButtonClickResponse[]>(
-  //     `${analyticsUrl}/analytics/button-clicks?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
-  //     .pipe(map(data => {
-  //       return {
-  //         labels: data.map(d => d.pageName),
-  //         data: data.map(d => d.visits)
-  //       }
-  //     }))
-  // }
+  // return of({groupedSeries, categories})
+    return this.http.get<ButtonClickResponse[]>(
+      `${analyticsUrl}/analytics/button-clicks?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
+      .pipe(map(res => {
+        const categories: string[] = []
+        res.map(r => {
+          if (categories.indexOf(r.page) === -1) categories.push(r.page.replace(clientUrl, ''))
+        })
+
+        // map res and return a GroupedSeries
+        const groupedSeries: GroupedSeries[] = res.map(r => {
+          // if (categories.indexOf(r.page) === -1) categories.push(r.page)
+
+          if (categories.indexOf(r.page) === -1) {
+            return {
+              name: '',
+              data: []
+            }
+          } else { 
+            return {
+              name: r.buttonName,
+              data: [r.clickCount]
+            }
+          }
+        })
+        return {groupedSeries, categories}
+      }))
+  }
+
+  public getLinkClicks(startDate: Date, endDate: Date) {  
+
+  // return of({groupedSeries, categories})
+    return this.http.get<LinkClickResponse[]>(
+      `${analyticsUrl}/analytics/link-clicks?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`)
+      .pipe(map(res => {
+        const categories: string[] = []
+        res.map(r => {
+          if (categories.indexOf(r.page) === -1) categories.push(r.page.replace(clientUrl, ''))
+        })
+
+        // map res and return a GroupedSeries
+        const groupedSeries: GroupedSeries[] = res.map(r => {
+          // if (categories.indexOf(r.page) === -1) categories.push(r.page)
+
+          if (categories.indexOf(r.page) === -1) {
+            return {
+              name: '',
+              data: []
+            }
+          } else { 
+            return {
+              name: r.linkName,
+              data: [r.clickCount]
+            }
+          }
+        })
+        return {groupedSeries, categories}
+      }))
+  }
 }
 

@@ -22,6 +22,13 @@ export interface ButtonClickResponse {
   buttonName: string,
 }
 
+export interface LinkClickResponse {
+  page: string,
+  clickCount: number,
+  linkName: string,
+  linkDestination: string,
+}
+
 export interface LnkClickResponse {
   page: string,
   clickCount: number,

@@ -1,15 +1,14 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ChartSeries } from '@ui-core-model/response';
 import { AnalyticsService } from '@ui-core-services/analytics.service';
 import { GroupedSeries } from 'src/app/shared/components/bar-graph/bar-graph.component';
 
 @Component({
-  selector: 'app-button-clicks',
-  templateUrl: './button-clicks.component.html',
-  styleUrls: ['./button-clicks.component.scss']
+  selector: 'app-link-clicks',
+  templateUrl: './link-clicks.component.html',
+  styleUrls: ['./link-clicks.component.scss']
 })
-export class ButtonClicksComponent implements OnInit {
-  @Input() startDate!: Date
+export class LinkClicksComponent implements OnInit {
+@Input() startDate!: Date
   @Input() endDate!: Date
   @Input() timePeriod!: string
   
@@ -29,11 +28,9 @@ export class ButtonClicksComponent implements OnInit {
     
   ngOnChanges() {
     if (this.startDate && this.endDate) {
-      this.analyticsService.getButtonClicks(this.startDate, this.endDate)
+      this.analyticsService.getLinkClicks(this.startDate, this.endDate)
       .subscribe(data => this.data = data)
     }
     this.cdr.detectChanges();
-    console.log(this.data)
   }
-  
 }
