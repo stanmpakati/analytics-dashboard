@@ -1,3 +1,4 @@
+import { AuthService } from '@ui-core-services/auth.service';
 // import { PortalService } from '@ui-core-services/portal.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, RouteConfigLoadEnd, RouteConfigLoadStart, Router } from "@angular/router";
@@ -14,15 +15,18 @@ export class PortalComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string | undefined;
   private yScrollStack: number[] = [];
+  username = 'admin';
 
   constructor(
     public location: Location,
     private router: Router,
+    public authService: AuthService
     // private loadingService: LoaderService,
     // private portalService: PortalService,
   ) { }
 
   ngOnInit() {
+    this.username = this.authService.getUserName;
     // this.router.events.subscribe(
     //   event => {
     //     if (event instanceof RouteConfigLoadStart) {
@@ -185,6 +189,10 @@ export class PortalComponent implements OnInit {
   
     public isDashboard() {
       return true;
+    }
+
+    logout() {
+        this.authService.logout();
     }
 }
 

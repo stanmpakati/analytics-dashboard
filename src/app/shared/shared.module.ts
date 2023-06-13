@@ -9,6 +9,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+ import { MatMenuModule} from '@angular/material/menu';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -45,6 +50,11 @@ import { TableComponent } from './components/table/table.component';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatMenuModule,
+
     NgApexchartsModule,
   ],
   exports: [

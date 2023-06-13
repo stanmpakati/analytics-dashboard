@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthInterceptor } from './core/auth.interceptor';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,10 @@ import { AuthInterceptor } from './core/auth.interceptor';
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    OverlayModule,
+
+    MatMenuModule,
+
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

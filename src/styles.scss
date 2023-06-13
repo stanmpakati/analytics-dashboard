@@ -10,6 +10,8 @@ body {
 body {
   margin: 0;
   font-family: Inter, "Helvetica Neue", sans-serif;
+  background-color: rgb(230, 236, 236);
+  min-height: 100vh;
 }
 
 .sidebar {
@@ -39,6 +41,12 @@ body {
   // margin-top: 42px;
 }
 
+.app-content {
+  padding:  32px 40px !important;
+  min-height: calc( 100vh - 64px );
+  background-color: rgb(230, 236, 236);
+}
+
 .color-primary {
   color: #006063;
 }
@@ -48,6 +56,9 @@ body {
   border: #006063;
 }
 
+.flexExpand {
+    flex: 1 1 auto;
+}
 
 
 @media only screen and (min-width: 576px) {

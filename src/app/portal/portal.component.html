@@ -1,29 +1,77 @@
-<div class="wrapper">
-  <!-- <div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
-    <app-sidebar></app-sidebar>
-    <div class="sidebar-background"></div>
-  </div> -->
-  <!-- <div [ngClass]="isDashboard() ? 'mx-4 px-4' : 'main-panel'"> -->
-  </div>
-  <!--Main Navigation-->
-  <header>
-    <app-sidebar></app-sidebar>
-  
-    <app-navbar></app-navbar>
-  </header>
-  <!--Main Navigation-->
-  
-  <!--Main layout-->
-  <main style="margin-top: 58px">
-    <div class="main-panel pt-4">
-      <app-navbar></app-navbar>
-      <div class="main-content">
-        <!-- <app-loading-spinner></app-loading-spinner> -->
-        <router-outlet></router-outlet>
-      </div>
-      <div>
-        <!-- <app-footer></app-footer> -->
-      </div>
+<!-- <div class="logo">
+  <a routerLink="/portal/dashboard" class="">
+    <div class="logo-img">
+      <img src="/assets/images/logo.jpg" />
     </div>
-</main>
-<!--Main layout-->
+  </a>
+  </div>
+  <div class="sidebar-wrapper mt-4">
+    <!-- Navigation -->
+
+  <!-- <mat-accordion routerLinkActive="active" *ngFor="let menuItem of menuItems" class="nav-item">
+                                                                                      <app-nav-item-dropdown [menuItem]="menuItem" [showComponent]="viewAllComponents"></app-nav-item-dropdown>
+                                                                                    </mat-accordion> --
+
+    <li class="nav-item d-block foot-buttons">
+    
+      <button mat-stroked-button color="warn" id="logout-button" (click)="logout()" *ngIf="isMobileMenu" class="d-lg-none">
+        Logout <i class="material-icons" color="warn">logout</i>
+      </button>
+    </li>
+    </ul>
+    </div> -->
+    
+    <!-- Sidebar -->
+    <!-- <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+                                                                                                                                                                  <div class="position-sticky">
+                                                                                                                                                                    <div class="list-group list-group-flush mx-3 mt-4">
+                                                                                                                                                                      <a [routerLink]="'/portal/dashboard'" routerLinkActive='active' nav
+                                                                                                                                                                        class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                                                                                                                                                                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Analytics dashboard</span>
+                                                                                                                                                                      </a>
+                                                                                                                                                                      <a [routerLink]="'/portal/users'" routerLinkActive='active' class="list-group-item list-group-item-action py-2 ripple ">
+                                                                                                                                                                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Users</span>
+                                                                                                                                                                      </a>
+                                                                                                                                                                    </div>
+                                                                                                                          </div>
+                                                                                                                          </nav> -->
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu" class="d-block d-md-none">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="logo">
+        <a routerLink="/portal/dashboard" class="">
+          <div class="logo-img">
+            <img class="logo-img" src="/assets/images/logo.png" />
+          </div>
+      </a>
+      </div>
+    <span class="flexExpand"></span>
+    <span class="mx-4">{{ username }}</span>
+    
+    <span class="toolbar-item-spacer"></span>
+    
+    <button mat-stroked-button color="warn" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>Logout
+    </button>
+    </mat-toolbar>
+    
+    <!-- Sidebar -->
+    <mat-sidenav-container class="side-nav">
+      <mat-sidenav #sidenav mode="side" opened="true" class="app-sidenav">
+        <mat-nav-list>
+          <mat-list-item routerLink="/portal/dashboard">
+            <mat-icon>dashboard</mat-icon><span>Dashboard</span>
+          </mat-list-item>
+          <mat-list-item routerLink="/portal/users">
+            <mat-icon>person_outline</mat-icon><span>Users</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <div class="app-content">
+          <router-outlet>
+          </router-outlet>
+        </div>
+      </mat-sidenav-content>
+      </mat-sidenav-container>

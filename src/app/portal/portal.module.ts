@@ -23,6 +23,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MetricsBannerComponent } from './dashboard/metrics-banner/metrics-banner.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -52,7 +57,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormCoreModule,
     MatButtonToggleModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatExpansionModule,
   ]
 })
 export class PortalModule { }
