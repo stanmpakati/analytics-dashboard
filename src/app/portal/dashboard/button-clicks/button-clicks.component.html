@@ -1,3 +1,4 @@
 <h4>Button Clicks</h4>
-<app-bar-graph [name]="'ButtonClicks'" [categories]="data?.categories" [groupedSeries]="data?.groupedSeries"
-  *ngIf="data?.categories.length > 0"></app-bar-graph>
+<!-- <app-bar-graph [name]="'ButtonClicks'" [categories]="data?.categories" [groupedSeries]="data?.groupedSeries"
+  *ngIf="data?.categories.length > 0"></app-bar-graph> -->
+<app-tree-map *ngIf="treeMapData?.length > 0" [groupedSeries]="treeMapData"></app-tree-map>

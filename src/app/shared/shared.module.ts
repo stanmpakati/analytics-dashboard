@@ -24,6 +24,7 @@ import { StackedBarComponent } from './components/stacked-bar/stacked-bar.compon
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { TableComponent } from './components/table/table.component';
+import { TreeMapComponent } from './components/tree-map/tree-map.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TableComponent } from './components/table/table.component';
     BarGraphComponent,
     PieChartComponent,
     StackedBarComponent,
+    TreeMapComponent,
   ],
   imports: [
     CommonModule,
@@ -67,7 +69,8 @@ import { TableComponent } from './components/table/table.component';
     LineChartComponent,    
     BarGraphComponent,
     PieChartComponent,
-    StackedBarComponent
+    StackedBarComponent,
+    TreeMapComponent,
   ]
 })
 export class SharedModule { }

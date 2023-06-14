@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { AnalyticsService } from '@ui-core-services/analytics.service';
+import { ApexAxisChartSeries } from 'ng-apexcharts';
 import { GroupedSeries } from 'src/app/shared/components/bar-graph/bar-graph.component';
+import { TreeMapSeries } from 'src/app/shared/components/tree-map/tree-map.component';
 
 @Component({
   selector: 'app-link-clicks',
@@ -8,15 +10,18 @@ import { GroupedSeries } from 'src/app/shared/components/bar-graph/bar-graph.com
   styleUrls: ['./link-clicks.component.scss']
 })
 export class LinkClicksComponent implements OnInit {
-@Input() startDate!: Date
+  @Input() startDate!: Date
   @Input() endDate!: Date
   @Input() timePeriod!: string
   
   data: {
     groupedSeries: GroupedSeries[];
     categories: string[];
-}
-  name = "Device Type"
+  }
+
+  treeMapData: ApexAxisChartSeries
+
+  name = "Link Clicks"
 
   constructor(
     public analyticsService: AnalyticsService,
@@ -28,9 +33,19 @@ export class LinkClicksComponent implements OnInit {
     
   ngOnChanges() {
     if (this.startDate && this.endDate) {
-      this.analyticsService.getLinkClicks(this.startDate, this.endDate)
-      .subscribe(data => this.data = data)
+    this.analyticsService.getLinkClicksTree(this.startDate, this.endDate)
+    .subscribe({
+      next: (res) => {
+          this.treeMapData = res;
+          console.log('tree map', this.treeMapData)
+        }
+      })
     }
+
+    // if (this.startDate && this.endDate) {
+    //   this.analyticsService.getLinkClicks(this.startDate, this.endDate)
+    //   .subscribe(data => this.data = data)
+    // }
     this.cdr.detectChanges();
   }
 }

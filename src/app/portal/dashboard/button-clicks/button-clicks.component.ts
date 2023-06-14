@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ChartSeries } from '@ui-core-model/response';
 import { AnalyticsService } from '@ui-core-services/analytics.service';
+import { ApexAxisChartSeries } from 'ng-apexcharts';
 import { GroupedSeries } from 'src/app/shared/components/bar-graph/bar-graph.component';
 
 @Component({
@@ -12,6 +13,8 @@ export class ButtonClicksComponent implements OnInit {
   @Input() startDate!: Date
   @Input() endDate!: Date
   @Input() timePeriod!: string
+
+  treeMapData: ApexAxisChartSeries
   
   data: {
     groupedSeries: GroupedSeries[];
@@ -31,6 +34,10 @@ export class ButtonClicksComponent implements OnInit {
     if (this.startDate && this.endDate) {
       this.analyticsService.getButtonClicks(this.startDate, this.endDate)
       .subscribe(data => this.data = data)
+      
+      this.analyticsService.getButtonClicksTree(this.startDate, this.endDate)
+      .subscribe(data => this.treeMapData = data)
+      
     }
     this.cdr.detectChanges();
     console.log(this.data)
